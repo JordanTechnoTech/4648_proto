@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -23,18 +22,14 @@ public class RobotMap {
 	public static int leftDriveMotor = 0;
 	public static int rightDriveMotor = 1;
 
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	public static int rangefinderPort = 1;
-	public static int rangefinderModule = 1;
-
-	public static SpeedController leftDriveSpeedController;
-	public static SpeedController rightDriveSpeedController;
+	public static Talon leftDriveMotorController;
+	public static Talon rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
 
+	//Another subsystem
 	public static void init() {
-		leftDriveSpeedController = new Talon(leftDriveMotor);
-		rightDriveSpeedController = new Talon(rightDriveMotor);
-		drivetrain = new DifferentialDrive(leftDriveSpeedController, rightDriveSpeedController);
+		leftDriveMotorController = new Talon(leftDriveMotor);
+		rightDriveMotorController = new Talon(rightDriveMotor);
+		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
 	}
 }

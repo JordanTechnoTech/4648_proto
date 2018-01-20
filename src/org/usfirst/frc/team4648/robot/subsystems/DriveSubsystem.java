@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4648.robot.subsystems;
 
 import org.usfirst.frc.team4648.robot.RobotMap;
+import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,21 +20,21 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class DriveSubsystem extends Subsystem { 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final SpeedController speedController1 = RobotMap.leftDriveSpeedController;
-    private final SpeedController speedController2 = RobotMap.rightDriveSpeedController;
+//	private final SpeedController speedController1 = RobotMap.leftDriveMotorController;
+//    private final SpeedController speedController2 = RobotMap.rightDriveMotorController;
     private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
 
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		 setDefaultCommand(new DriveCommand());
 	}
 	
 	public void tankDrive(double leftSpeed,double rightSpeed) {
 		differentialDrive1.tankDrive(leftSpeed, rightSpeed);
 	}
 	
-	public void arcadeDrive(double rotationSpeedLeft,double rotationSpeedRight) {
-    		differentialDrive1.arcadeDrive(-rotationSpeedLeft, -rotationSpeedRight);
+	public void arcadeDrive(double forwardSpeed,double rotationSpeed) {
+    		differentialDrive1.arcadeDrive(-forwardSpeed, rotationSpeed);
 	}
 }

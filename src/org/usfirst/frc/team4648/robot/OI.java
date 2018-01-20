@@ -7,7 +7,10 @@
 
 package org.usfirst.frc.team4648.robot;
 
+import org.usfirst.frc.team4648.robot.commands.DriveCommand;
+
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -39,7 +42,7 @@ public class OI {
 
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
-// 	leftBumperButton.whileHeld(new ExampleCommand());
+//		stickLeft.whileHeld(new DriveCommand());
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
@@ -56,5 +59,13 @@ public class OI {
 	
 	public double getSpeedRight() {
 		return controller.getY(Hand.kRight);
+	}
+	
+	public double getArcardeSpeed() {
+		return controller.getY(GenericHID.Hand.kLeft);
+	}
+	
+	public double getRotationSpeed() {
+		return controller.getX(GenericHID.Hand.kLeft);
 	}
 }
