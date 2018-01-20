@@ -15,33 +15,33 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem. You can replace me with your own Subsystem.
  */
-public class DriveSubsystem extends Subsystem { 
+public class DriveSubsystem extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	private final Talon speedController1 = RobotMap.leftDriveMotorController;
-    private final Talon  speedController2 = RobotMap.rightDriveMotorController;
-    private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
+	private final Talon speedController2 = RobotMap.rightDriveMotorController;
+	private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
 
-    public DriveSubsystem() {
-    	addChild("Left CIM", (Talon) speedController1);
-	addChild("Right CIM", (Talon) speedController2);
-	differentialDrive1.setSafetyEnabled(true);
-	differentialDrive1.setExpiration(0.1);
-	differentialDrive1.setMaxOutput(1.0);
-    }
-	
+	public DriveSubsystem() {
+		addChild("Left CIM", (Talon) speedController1);
+		addChild("Right CIM", (Talon) speedController2);
+		differentialDrive1.setSafetyEnabled(true);
+		differentialDrive1.setExpiration(0.1);
+		differentialDrive1.setMaxOutput(1.0);
+	}
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		 setDefaultCommand(new DriveCommand());
+		setDefaultCommand(new DriveCommand());
 	}
-	
-	public void tankDrive(double leftSpeed,double rightSpeed) {
+
+	public void tankDrive(double leftSpeed, double rightSpeed) {
 		differentialDrive1.tankDrive(leftSpeed, rightSpeed);
 	}
-	
-	public void arcadeDrive(double forwardSpeed,double rotationSpeed) {
-    		differentialDrive1.arcadeDrive(-forwardSpeed, rotationSpeed);
+
+	public void arcadeDrive(double forwardSpeed, double rotationSpeed) {
+		differentialDrive1.arcadeDrive(-forwardSpeed, rotationSpeed);
 	}
 }

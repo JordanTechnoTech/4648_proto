@@ -115,7 +115,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		driveCommand.start();
 		Scheduler.getInstance().run();
 	}
 
