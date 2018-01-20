@@ -42,7 +42,7 @@ public class RobotMap {
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
 		
 		liftMotorController = new Spark(liftMotor);
-		
+
 		clawSolenoid = new Solenoid(solenoidMotor);
 	}
 }
