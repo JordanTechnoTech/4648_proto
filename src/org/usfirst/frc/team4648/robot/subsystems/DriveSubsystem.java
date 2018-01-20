@@ -27,7 +27,7 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {
 		addChild("Left CIM", (Talon) speedController1);
 		addChild("Right CIM", (Talon) speedController2);
-		differentialDrive1.setSafetyEnabled(true);
+		differentialDrive1.setSafetyEnabled(false);
 		differentialDrive1.setExpiration(0.1);
 		differentialDrive1.setMaxOutput(1.0);
 	}
