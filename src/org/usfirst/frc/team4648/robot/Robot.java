@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4648.robot.commands.DriveCommand;
+import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.LiftSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +28,8 @@ import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
  */
 public class Robot extends IterativeRobot {
 	public static DriveSubsystem driveSubsystem;
-	
+	public static LiftSubsystem liftSubsystem;
+	public static ClawSubsystem clawSubsystem;
 	public static OI m_oi;
 
 
@@ -43,6 +46,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		driveSubsystem = new DriveSubsystem();
+		liftSubsystem = new LiftSubsystem();
+		clawSubsystem = new ClawSubsystem();
 		m_oi = new OI();
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4648.robot;
 
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -25,11 +27,22 @@ public class RobotMap {
 	public static Talon leftDriveMotorController;
 	public static Talon rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
+	
+	//robot lift
+	public static int liftMotor = 2;
+	public static Spark liftMotorController;
 
-	//Another subsystem
+	//Another claw components
+	public static int solenoidMotor = 0;
+	public static Solenoid clawSolenoid; 
+	
 	public static void init() {
 		leftDriveMotorController = new Talon(leftDriveMotor);
 		rightDriveMotorController = new Talon(rightDriveMotor);
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
+		
+		liftMotorController = new Spark(liftMotor);
+		
+		clawSolenoid = new Solenoid(solenoidMotor);
 	}
 }
