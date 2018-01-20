@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4648.robot.commands.DriveCommand;
+import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
 
 /**
@@ -26,7 +27,7 @@ import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
  */
 public class Robot extends IterativeRobot {
 	public static DriveSubsystem driveSubsystem;
-	
+	public static ClawSubsystem clawSubsystem;
 	public static OI m_oi;
 
 
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		driveSubsystem = new DriveSubsystem();
+		clawSubsystem = new ClawSubsystem();
 		m_oi = new OI();
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
