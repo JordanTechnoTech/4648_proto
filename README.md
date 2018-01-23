@@ -1,3 +1,4 @@
 # 4648_proto
 test change for merging 2
-test change for merging 3
+Making a merge conflict here
+This line should stay
