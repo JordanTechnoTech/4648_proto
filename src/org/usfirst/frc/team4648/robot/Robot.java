@@ -8,15 +8,14 @@
 package org.usfirst.frc.team4648.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftSubsystem;
 
 /**
@@ -30,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static DriveSubsystem driveSubsystem;
 	public static LiftSubsystem liftSubsystem;
 	public static ClawSubsystem clawSubsystem;
+	public static IntakeSubsystem intakeSubsystem;
 	public static OI m_oi;
 
 
@@ -48,6 +48,7 @@ public class Robot extends IterativeRobot {
 		driveSubsystem = new DriveSubsystem();
 		liftSubsystem = new LiftSubsystem();
 		clawSubsystem = new ClawSubsystem();
+		intakeSubsystem = new IntakeSubsystem();
 		m_oi = new OI();
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());

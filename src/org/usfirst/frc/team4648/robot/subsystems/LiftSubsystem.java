@@ -4,7 +4,6 @@ import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Spark;
 
 public class LiftSubsystem extends Subsystem {

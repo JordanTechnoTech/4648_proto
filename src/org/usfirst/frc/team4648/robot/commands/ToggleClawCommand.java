@@ -15,8 +15,13 @@ public class ToggleClawCommand extends Command {
 	
 	@Override
 	protected void execute() {
-		Robot.clawSubsystem.toggleClaw();
+		if(Robot.m_oi.getClawToggle()) {
+			Robot.clawSubsystem.openClaw();
+		} else {
+			Robot.clawSubsystem.closeClaw();
+		}
 	}
+
 
 
 	@Override

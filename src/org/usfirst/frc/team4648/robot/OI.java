@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import org.usfirst.frc.team4648.robot.commands.DriveCommand;
-import org.usfirst.frc.team4648.robot.commands.ToggleClawCommand;
-
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -52,7 +49,6 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-		aButton.whenPressed(new ToggleClawCommand());
 	 }
 	
 	public double getSpeedLeft() {
@@ -73,5 +69,21 @@ public class OI {
 	
 	public double getLiftSpeed() {
 		return controller.getY(GenericHID.Hand.kRight);
+	}
+
+	public boolean getClawToggle() {
+		return controller.getAButton();
+	}
+	
+	public boolean getPassiveIntakeToggle() {
+		return controller.getBButton();
+	}
+	
+	public double getIntakeSpeed() {
+		return controller.getTriggerAxis(GenericHID.Hand.kLeft);
+	}
+	
+	public double getIntakeOutputSpeed() {
+		return controller.getTriggerAxis(GenericHID.Hand.kRight);
 	}
 }

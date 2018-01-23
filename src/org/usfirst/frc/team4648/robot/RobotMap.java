@@ -28,21 +28,31 @@ public class RobotMap {
 	public static Talon rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
 	
-	//robot lift
+	//robot lift components
 	public static int liftMotor = 2;
 	public static Spark liftMotorController;
 
-	//Another claw components
+	//claw components
 	public static int solenoidMotor = 0;
 	public static Solenoid clawSolenoid; 
 	
+	//Intake components
+	public static int intakeMotor = 3;
+	public static Spark intakeWheels;
+	
 	public static void init() {
+		//drive initialization
 		leftDriveMotorController = new Talon(leftDriveMotor);
 		rightDriveMotorController = new Talon(rightDriveMotor);
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
 		
+		//lift initialization
 		liftMotorController = new Spark(liftMotor);
 
+		//claw initialization
 		clawSolenoid = new Solenoid(solenoidMotor);
+		
+		//intake initialization
+		intakeWheels = new Spark(intakeMotor);
 	}
 }
