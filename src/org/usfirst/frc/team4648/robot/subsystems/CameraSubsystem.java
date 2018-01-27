@@ -38,6 +38,8 @@ public class CameraSubsystem extends Subsystem {
 		if (grabFrameResponse != 0) {
 			Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
 			outputStream.putFrame(mat);
+		} else {
+			outputStream.notifyError(cvSink.getError());
 		}
 	}
 
@@ -45,6 +47,8 @@ public class CameraSubsystem extends Subsystem {
 		// Puts frame into source
 		if (grabFrameResponse != 0) {
 			Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
+		} else {
+			outputStream.notifyError(cvSink.getError());
 		}
 	}
 
