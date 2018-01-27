@@ -10,6 +10,7 @@ package org.usfirst.frc.team4648.robot;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,8 +42,6 @@ public class Robot extends IterativeRobot {
 	public static OI m_oi;
 	
 	Thread m_visionThread;
-
-
 	Command m_autonomousCommand;
 
 	Command driveCommand;
@@ -66,9 +65,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
 		m_visionThread = new Thread(() -> {
-			// Get the Axis camera from CameraServer
-			AxisCamera camera
-					= CameraServer.getInstance().addAxisCamera("axis-camera.local");
+			// Get the UsbCamera from CameraServer
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 			// Set the resolution
 			camera.setResolution(640, 480);
 			camera.setFPS(5);
