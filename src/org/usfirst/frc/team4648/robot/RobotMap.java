@@ -9,6 +9,7 @@ package org.usfirst.frc.team4648.robot;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -45,6 +46,10 @@ public class RobotMap {
 	//Camera components
 	public static String cameraHost = "axis-camera.local";
 	public static AxisCamera camera;
+	
+	//Gyro component
+	public static int gyroPort = 1;
+	public static AnalogGyro gyro;
 	public static void init() {
 		//drive initialization
 		leftDriveMotorController = new Talon(leftDriveMotor);
@@ -64,5 +69,8 @@ public class RobotMap {
 		camera = CameraServer.getInstance().addAxisCamera(cameraHost);
 		camera.setResolution(640, 480);
 		camera.setFPS(30);
+		
+		//gyro initialization
+		gyro = new AnalogGyro(gyroPort);
 	}
 }
