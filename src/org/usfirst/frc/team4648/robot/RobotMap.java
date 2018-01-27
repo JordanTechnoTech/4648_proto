@@ -8,6 +8,8 @@
 package org.usfirst.frc.team4648.robot;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.cscore.AxisCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -40,6 +42,9 @@ public class RobotMap {
 	public static int intakeMotor = 3;
 	public static Spark intakeWheels;
 	
+	//Camera components
+	public static String cameraHost = "axis-camera.local";
+	public static AxisCamera camera;
 	public static void init() {
 		//drive initialization
 		leftDriveMotorController = new Talon(leftDriveMotor);
@@ -54,5 +59,10 @@ public class RobotMap {
 		
 		//intake initialization
 		intakeWheels = new Spark(intakeMotor);
+		
+		//camera initialization
+		camera = CameraServer.getInstance().addAxisCamera(cameraHost);
+		camera.setResolution(640, 480);
+		camera.setFPS(30);
 	}
 }
