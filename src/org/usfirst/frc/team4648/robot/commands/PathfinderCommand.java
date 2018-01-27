@@ -9,7 +9,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 
 public class PathfinderCommand extends Command {
 	
-	private PathfinderUtils pathfinderUtils;
+//	private PathfinderUtils pathfinderUtils;
 
 	public PathfinderCommand() {
 		// TODO Auto-generated constructor stub
