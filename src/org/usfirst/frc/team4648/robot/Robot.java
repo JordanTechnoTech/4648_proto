@@ -117,7 +117,7 @@ public class Robot extends IterativeRobot {
 			m_autonomousCommand.cancel();
 		}
 	}
- //This is a test
+	
 	/**
 	 * This function is called periodically during operator control.
 	 */
