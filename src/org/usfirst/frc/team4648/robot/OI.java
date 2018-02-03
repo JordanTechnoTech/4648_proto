@@ -80,10 +80,10 @@ public class OI {
 	}
 	
 	public double getIntakeSpeed() {
-		return controller.getTriggerAxis(GenericHID.Hand.kLeft);
+		return controller.getTriggerAxis(GenericHID.Hand.kRight);
 	}
 	
 	public double getIntakeOutputSpeed() {
-		return controller.getTriggerAxis(GenericHID.Hand.kRight);
+		return controller.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 }
