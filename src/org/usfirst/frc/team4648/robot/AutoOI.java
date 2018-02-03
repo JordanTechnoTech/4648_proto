@@ -10,7 +10,7 @@ public class AutoOI {
 	}
 
 	public Coordinate getXY() {
-	   return null;
+	   return new Coordinate(0.0,0.0);
 	}
 	
 	public Zone getCurrentZone() {
