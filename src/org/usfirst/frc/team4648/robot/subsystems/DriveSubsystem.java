@@ -10,9 +10,11 @@ package org.usfirst.frc.team4648.robot.subsystems;
 import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * An example subsystem. You can replace me with your own Subsystem.
@@ -24,9 +26,11 @@ public class DriveSubsystem extends Subsystem {
 	private final Talon speedController2 = RobotMap.rightDriveMotorController;
 	private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
 
+	private final AnalogGyro gyro = RobotMap.gyro;
 	public DriveSubsystem() {
 		addChild("Left CIM", (Talon) speedController1);
 		addChild("Right CIM", (Talon) speedController2);
+		addChild("Gyro",gyro);
 		differentialDrive1.setSafetyEnabled(false);
 		differentialDrive1.setExpiration(0.1);
 		differentialDrive1.setMaxOutput(1.0);
@@ -44,4 +48,10 @@ public class DriveSubsystem extends Subsystem {
 	public void arcadeDrive(double forwardSpeed, double rotationSpeed) {
 		differentialDrive1.arcadeDrive(-forwardSpeed, rotationSpeed);
 	}
+	
+	public void log() {
+		SmartDashboard.putNumber("gyro", gyro.getAngle());
+	}
+	
+	
 }
