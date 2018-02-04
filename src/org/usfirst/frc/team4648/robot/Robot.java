@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
@@ -75,8 +74,7 @@ public class Robot extends IterativeRobot {
 			// Get a CvSink. This will capture Mats from the camera
 			CvSink cvSink = CameraServer.getInstance().getVideo();
 			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream
-					= CameraServer.getInstance().putVideo("Rectangle", 640, 480);
+			CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
 
 			// Mats are very memory expensive. Lets reuse this Mat.
 			Mat mat = new Mat();
