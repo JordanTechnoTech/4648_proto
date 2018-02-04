@@ -7,11 +7,14 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 import edu.wpi.cscore.AxisCamera;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -30,47 +33,42 @@ public class RobotMap {
 	public static Talon leftDriveMotorController;
 	public static Talon rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
-	
-	//robot lift components
+
+	// robot lift components
 	public static int liftMotor = 2;
 	public static Spark liftMotorController;
 
-	//claw components
+	// claw components
 	public static int solenoidMotor = 0;
-	public static Solenoid clawSolenoid; 
-	
-	//Intake components
+	public static Solenoid clawSolenoid;
+
+	// Intake components
 	public static int intakeMotor = 3;
 	public static Spark intakeWheels;
-	
-	//Camera components
+
+	// Camera components
 	public static String cameraHost = "axis-camera.local";
 	public static AxisCamera camera;
-	
-	//Gyro component
-	public static int gyroPort = 1;
-	public static AnalogGyro gyro;
+
+	// IMU(Inertial Measurement Unit) component contains a three axis gyroscope, three axis accelerometer, three axis magnetometer, and a barometer
+	public static ADIS16448_IMU imu;
+
 	public static void init() {
-		//drive initialization
+		// drive initialization
 		leftDriveMotorController = new Talon(leftDriveMotor);
 		rightDriveMotorController = new Talon(rightDriveMotor);
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
-		
-		//lift initialization
+
+		// lift initialization
 		liftMotorController = new Spark(liftMotor);
 
-		//claw initialization
+		// claw initialization
 		clawSolenoid = new Solenoid(solenoidMotor);
-		
-		//intake initialization
+
+		// intake initialization
 		intakeWheels = new Spark(intakeMotor);
-		
-		//camera initialization
-		camera = CameraServer.getInstance().addAxisCamera(cameraHost);
-		camera.setResolution(640, 480);
-		camera.setFPS(30);
-		
-		//gyro initialization
-		gyro = new AnalogGyro(gyroPort);
+
+		// imu initialization
+		imu = new ADIS16448_IMU();
 	}
 }
