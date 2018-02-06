@@ -50,6 +50,7 @@ public class RobotMap {
 	
 	//Sonar
 	public static AnalogInput leftSonar;
+	public static AnalogInput rightSonar;
 
 	// IMU(Inertial Measurement Unit) component contains a three axis gyroscope,
 	// three axis accelerometer, three axis magnetometer, and a barometer
@@ -75,5 +76,6 @@ public class RobotMap {
 		
 		//Sonar Initialization
 		leftSonar = new AnalogInput(0);
+		rightSonar = new AnalogInput(1);
 	}
 }
