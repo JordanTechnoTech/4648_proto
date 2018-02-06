@@ -64,5 +64,8 @@ public class DriveSubsystem extends Subsystem {
 
 		SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
 		SmartDashboard.putNumber("Temperature: ", imu.getTemperature());
+		
+		SmartDashboard.putNumber("Left Sonar Distance: ", RobotMap.leftSonar.getValue());
+
 	}
 }

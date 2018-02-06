@@ -10,6 +10,7 @@ package org.usfirst.frc.team4648.robot;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
@@ -46,6 +47,9 @@ public class RobotMap {
 	// Camera components
 	public static String cameraHost = "axis-camera.local";
 	public static AxisCamera camera;
+	
+	//Sonar
+	public static AnalogInput leftSonar;
 
 	// IMU(Inertial Measurement Unit) component contains a three axis gyroscope,
 	// three axis accelerometer, three axis magnetometer, and a barometer
@@ -68,5 +72,8 @@ public class RobotMap {
 
 		// imu initialization
 		imu = new ADIS16448_IMU();
+		
+		//Sonar Initialization
+		leftSonar = new AnalogInput(0);
 	}
 }
