@@ -12,9 +12,7 @@ import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;

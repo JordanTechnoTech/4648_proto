@@ -8,6 +8,9 @@
 package org.usfirst.frc.team4648.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+
+import org.usfirst.frc.team4648.robot.commands.PathfinderCommand;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -44,7 +47,7 @@ public class OI {
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
-	// button.whileHeld(new ExampleCommand());
+	leftBumperButton.whileHeld(new PathfinderCommand());
 
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
