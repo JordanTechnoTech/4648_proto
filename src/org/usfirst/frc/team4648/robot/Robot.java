@@ -11,6 +11,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -45,7 +46,7 @@ public class Robot extends IterativeRobot {
 	Command m_autonomousCommand;
 
 	Command driveCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<Command> autoChooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -60,9 +61,13 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem = new IntakeSubsystem();
 		m_oi = new OI();
 		
+		// Autonomous Versions
+		autoChooser.addDefault("Default Program", new AutoDefault);
+		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
+		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", autoChooser);
 		
 		m_visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
@@ -131,14 +136,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		
+		//Switch & Lever field positions
+		String gameData = new String (DriverStation.getInstance().getGameSpecificMessage());
+		String ourSwitch = gameData.substring(0, 0);
+		String Scale = gameData.substring(1, 1);
+		String opositionSwitich = gameData.substring(2, 2);
+		
+		// checks which autonomous program is selected to run
+		m_autonomousCommand = autoChooser.getSelected();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
