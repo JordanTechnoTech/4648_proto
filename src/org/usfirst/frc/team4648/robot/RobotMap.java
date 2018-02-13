@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
@@ -32,8 +33,10 @@ public class RobotMap {
 	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
-	public static int leftDriveMotor = 0;
-	public static int rightDriveMotor = 1;
+	public static int leftDriveMotor1 = 0;
+	public static int leftDriveMotor2 = 1;
+	public static int rightDriveMotor1 = 2;
+	public static int rightDriveMotor2 = 3;
 
 	public static SpeedController leftDriveMotorController;
 	public static SpeedController rightDriveMotorController;
@@ -43,8 +46,10 @@ public class RobotMap {
 	public static Encoder rightEncoder = new Encoder(3, 4);
 
 	// robot lift components
-	public static int liftMotor = 2;
-	public static Spark liftMotorController;
+	public static int innerLiftMotor = 5;
+	public static int outerLiftMotor = 4;
+	public static Spark outerLiftMotorController;
+	public static Talon innerLiftMotorController;
 
 	// claw components
 	public static int solenoidMotor = 0;
@@ -68,12 +73,13 @@ public class RobotMap {
 
 	public static void init() {
 		// drive initialization
-		leftDriveMotorController = new SpeedControllerGroup(new Spark(0), new Spark(1));
-		rightDriveMotorController = new SpeedControllerGroup(new Spark(2), new Spark(3));
+		leftDriveMotorController = new SpeedControllerGroup(new Spark(leftDriveMotor1), new Spark(leftDriveMotor2));
+		rightDriveMotorController = new SpeedControllerGroup(new Spark(rightDriveMotor1), new Spark(rightDriveMotor2));
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
 
 		// lift initialization
-		liftMotorController = new Spark(liftMotor);
+		outerLiftMotorController = new Spark(outerLiftMotor);
+		innerLiftMotorController = new Talon(innerLiftMotor);
 
 		// claw initialization
 		clawSolenoid = new Solenoid(solenoidMotor);

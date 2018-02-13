@@ -29,7 +29,8 @@ public class LiftCommand extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.liftSubsystem.liftControl(0);
+		Robot.liftSubsystem.outerLiftControl(0);
+		Robot.liftSubsystem.innerLiftControl(0);
 		// TODO Auto-generated method stub
 		super.end();
 	}

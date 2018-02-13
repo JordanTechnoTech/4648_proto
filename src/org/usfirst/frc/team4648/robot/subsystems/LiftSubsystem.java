@@ -5,10 +5,12 @@ import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 
 public class LiftSubsystem extends Subsystem {
 
-	private final Spark liftMotorController = RobotMap.liftMotorController;
+	private final Spark outerLiftMotorController = RobotMap.outerLiftMotorController;
+	private final Talon innerLiftMotorController = RobotMap.innerLiftMotorController;
 	public static final double LOWER_SPEED_RATE = 0.3;
 	
 	@Override
@@ -17,12 +19,21 @@ public class LiftSubsystem extends Subsystem {
 		setDefaultCommand(new LiftCommand());
 	}
 	
-	public void liftControl(double liftSpeed) {
+	public void innerLiftControl(double liftSpeed) {
 		if (liftSpeed > 0) {
-			liftMotorController.set(liftSpeed);
+			innerLiftMotorController.set(liftSpeed);
 		}
 		else {
-			liftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
+			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
+		}
+	}
+	
+	public void outerLiftControl(double liftSpeed) {
+		if (liftSpeed > 0) {
+			outerLiftMotorController.set(liftSpeed);
+		}
+		else {
+			outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
 		}
 	}
 	
