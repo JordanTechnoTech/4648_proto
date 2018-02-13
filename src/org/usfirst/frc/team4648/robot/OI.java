@@ -58,39 +58,47 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	 }
 	
-	public double getSpeedLeft() {
+	public double getSpeedLeft() { // unused
 		return  controller1.getY(Hand.kLeft);
 	}
 	
-	public double getSpeedRight() {
+	public double getSpeedRight() { //unused
 		return controller1.getY(Hand.kRight);
 	}
 	
-	public double getArcardeSpeed() {
+	public double getArcardeSpeed() { // DriveCommand
 		return controller1.getY(GenericHID.Hand.kLeft);
 	}
 	
-	public double getRotationSpeed() {
+	public double getRotationSpeed() { // DriveCommand
 		return controller1.getX(GenericHID.Hand.kLeft);
 	}
 	
-	public double getLiftSpeed() {
+	public double getLiftSpeed() { //LiftCommand 
 		return controller1.getY(GenericHID.Hand.kRight);
 	}
+	
+	public double getInnerLiftSpeed() { //LiftCommand
+		return controller2.getY(GenericHID.Hand.kRight);
+	}
+	
+	public double getOuterLiftSpeed() { //LiftCommand
+		return controller2.getY(GenericHID.Hand.kLeft);
+	}
 
-	public boolean getClawToggle() {
+	public boolean getClawToggle() { //ToggleClawCommand
 		return controller1.getAButton();
 	}
 	
-	public boolean getPassiveIntakeToggle() {
+	public boolean getPassiveIntakeToggle() { //IntakeCommand
 		return controller1.getBButton();
 	}
 	
-	public double getIntakeSpeed() {
+	public double getIntakeSpeed() { //IntakeCommand
 		return controller1.getTriggerAxis(GenericHID.Hand.kRight);
 	}
 	
-	public double getIntakeOutputSpeed() {
+	public double getIntakeOutputSpeed() { //IntakeCommand
 		return controller1.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 }

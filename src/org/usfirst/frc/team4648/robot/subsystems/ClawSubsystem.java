@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawSubsystem extends Subsystem {
-	Solenoid clawSolenoid = RobotMap.clawSolenoid;
+	Solenoid clawSolenoid = RobotMap.clawActuate;
 
 	public ClawSubsystem() {
 		super();

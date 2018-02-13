@@ -18,7 +18,8 @@ public class LiftCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.liftSubsystem.liftControl(Robot.m_oi.getLiftSpeed());
+		Robot.liftSubsystem.innerLiftControl(Robot.m_oi.getInnerLiftSpeed());
+		Robot.liftSubsystem.outerLiftControl(Robot.m_oi.getOuterLiftSpeed());
 	}
 	
 	@Override

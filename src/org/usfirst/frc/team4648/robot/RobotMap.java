@@ -52,12 +52,12 @@ public class RobotMap {
 	public static Talon innerLiftMotorController;
 
 	// claw components
-	public static int solenoidMotor = 0;
-	public static Solenoid clawSolenoid;
+	public static int clawActuateMotor = 3;
+	public static Solenoid clawActuate;
 
 	// Intake components
-	public static int intakeMotor = 3;
-	public static Spark intakeWheels;
+	public static int intakeMotor = 6;
+	public static Talon intakeWheels;
 
 	// Camera components
 	public static String cameraHost = "axis-camera.local";
@@ -82,10 +82,10 @@ public class RobotMap {
 		innerLiftMotorController = new Talon(innerLiftMotor);
 
 		// claw initialization
-		clawSolenoid = new Solenoid(solenoidMotor);
+		clawActuate = new Solenoid(clawActuateMotor);
 
 		// intake initialization
-		intakeWheels = new Spark(intakeMotor);
+		intakeWheels = new Talon(intakeMotor);
 
 		// imu initialization
 		imu = new ADIS16448_IMU();

@@ -3,11 +3,11 @@ package org.usfirst.frc.team4648.robot.subsystems;
 import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.IntakeCommand;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IntakeSubsystem extends Subsystem {
-	Spark intakeWheels = RobotMap.intakeWheels;
+	Talon intakeWheels = RobotMap.intakeWheels;
 	public final double PASSIVE_INTAKE_SPEED = 0.25;
 	public double PASSIVE_INTAKE_STATUS = 0;
 	
