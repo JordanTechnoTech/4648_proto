@@ -20,21 +20,25 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	XboxController controller = new XboxController(1);
+	XboxController controller1 = new XboxController(1);
+	XboxController controller2 = new XboxController(2);
 	
 	//// CREATING BUTTONS
 	// You create one by telling it which joystick it's on and which button
 	// number it is.
-	Button leftBumperButton = new XBoxButton(controller, XBoxButton.kBumperLeft);
-	Button rightBumperButton = new XBoxButton(controller, XBoxButton.kBumperRight);
-	Button aButton = new XBoxButton(controller, XBoxButton.kA);
-	Button bButton = new XBoxButton(controller, XBoxButton.kB);
-	Button xButton = new XBoxButton(controller, XBoxButton.kX);
-	Button yButton = new XBoxButton(controller, XBoxButton.kY);
-	Button backButton = new XBoxButton(controller, XBoxButton.kBack);
-	Button startButton = new XBoxButton(controller, XBoxButton.kStart);
-	Button stickLeft = new XBoxButton(controller, XBoxButton.kStickLeft);
-	Button stickRight = new XBoxButton(controller, XBoxButton.kStickRight);
+	Button leftBumperButton = new XBoxButton(controller1, XBoxButton.kBumperLeft);
+	Button rightBumperButton = new XBoxButton(controller1, XBoxButton.kBumperRight);
+	Button aButton = new XBoxButton(controller1, XBoxButton.kA);
+	Button bButton = new XBoxButton(controller1, XBoxButton.kB);
+	Button xButton = new XBoxButton(controller1, XBoxButton.kX);
+	Button yButton = new XBoxButton(controller1, XBoxButton.kY);
+	Button backButton = new XBoxButton(controller1, XBoxButton.kBack);
+	Button startButton = new XBoxButton(controller1, XBoxButton.kStart);
+	Button stickLeft = new XBoxButton(controller1, XBoxButton.kStickLeft);
+	Button stickRight = new XBoxButton(controller1, XBoxButton.kStickRight);
+	
+	Button stickLeft2 = new XBoxButton(controller2, XBoxButton.kStickLeft);
+	Button stickRight2 = new XBoxButton(controller2, XBoxButton.kStickRight);
 	
 	public OI() {
 	//// TRIGGERING COMMANDS WITH BUTTONS
@@ -55,38 +59,38 @@ public class OI {
 	 }
 	
 	public double getSpeedLeft() {
-		return  controller.getY(Hand.kLeft);
+		return  controller1.getY(Hand.kLeft);
 	}
 	
 	public double getSpeedRight() {
-		return controller.getY(Hand.kRight);
+		return controller1.getY(Hand.kRight);
 	}
 	
 	public double getArcardeSpeed() {
-		return controller.getY(GenericHID.Hand.kLeft);
+		return controller1.getY(GenericHID.Hand.kLeft);
 	}
 	
 	public double getRotationSpeed() {
-		return controller.getX(GenericHID.Hand.kLeft);
+		return controller1.getX(GenericHID.Hand.kLeft);
 	}
 	
 	public double getLiftSpeed() {
-		return controller.getY(GenericHID.Hand.kRight);
+		return controller1.getY(GenericHID.Hand.kRight);
 	}
 
 	public boolean getClawToggle() {
-		return controller.getAButton();
+		return controller1.getAButton();
 	}
 	
 	public boolean getPassiveIntakeToggle() {
-		return controller.getBButton();
+		return controller1.getBButton();
 	}
 	
 	public double getIntakeSpeed() {
-		return controller.getTriggerAxis(GenericHID.Hand.kRight);
+		return controller1.getTriggerAxis(GenericHID.Hand.kRight);
 	}
 	
 	public double getIntakeOutputSpeed() {
-		return controller.getTriggerAxis(GenericHID.Hand.kLeft);
+		return controller1.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 }
