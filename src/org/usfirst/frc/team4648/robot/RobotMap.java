@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
@@ -26,9 +25,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * floating around.
  */
 public class RobotMap {
-	public static final double WHEELBASE_WIDTH = 10.3;
-	public static final double WHEEL_DIAMETER = 0.6;
-	public static final int ENCODER_TICKS_PER_REVOLUTION = 0;
+	public static final double WHEELBASE_WIDTH = 6; //INCHES
+	public static final double WHEEL_DIAMETER = .62; //INCHES
+	public static final int ENCODER_TICKS_PER_REVOLUTION = 1440;
 	public static final int MOTION_PROFILE_MAX_VELOCITY = 0;
 	
 	// For example to map the left and right motors, you could define the
