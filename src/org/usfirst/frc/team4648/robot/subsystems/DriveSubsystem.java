@@ -12,7 +12,9 @@ import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -32,8 +34,8 @@ public class DriveSubsystem extends Subsystem {
 	private final ADIS16448_IMU imu = RobotMap.imu;
 
 	public DriveSubsystem() {
-		addChild("Left CIM", (Talon) leftSpeedController);
-		addChild("Right CIM", (Talon) rightController);
+		addChild("Left CIM", (SpeedControllerGroup) leftSpeedController);
+		addChild("Right CIM", (SpeedControllerGroup) rightController);
 		addChild("IMU", imu);
 		differentialDrive1.setSafetyEnabled(false);
 		differentialDrive1.setExpiration(0.1);
