@@ -13,11 +13,10 @@ public class IntakeSubsystem extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 		setDefaultCommand(new IntakeCommand());
 	}
 	
-	public void passiveIntake(boolean passiveToggle) {
+	public void passiveIntake(boolean passiveToggle) { //only for Prototype robot
 		if (PASSIVE_INTAKE_STATUS == 0) {
 			intakeWheels.set(PASSIVE_INTAKE_SPEED);
 			PASSIVE_INTAKE_STATUS = 1;
@@ -31,7 +30,7 @@ public class IntakeSubsystem extends Subsystem {
 		intakeWheels.set(IntakeSpeed);
 	}
 	
-	public void manualIntakeOutput(double IntakeOutputSpeed) {
+	public void manualReject(double IntakeOutputSpeed) {
 		intakeWheels.set(-IntakeOutputSpeed);
 	}
 }

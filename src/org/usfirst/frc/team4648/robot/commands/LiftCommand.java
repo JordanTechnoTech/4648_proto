@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftCommand extends Command {
 
 	public LiftCommand() {
-    		requires(Robot.liftSubsystem);// drivetrain is an instance of our Drivetrain subsystem
+    		requires(Robot.liftSubsystem);
     }
 	
 	@Override
@@ -18,8 +18,7 @@ public class LiftCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.liftSubsystem.innerLiftControl(Robot.m_oi.getInnerLiftSpeed());
-		Robot.liftSubsystem.outerLiftControl(Robot.m_oi.getOuterLiftSpeed());
+		Robot.liftSubsystem.liftSystemControl(Robot.m_oi.getLiftSpeed());
 	}
 	
 	@Override
@@ -30,8 +29,7 @@ public class LiftCommand extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.liftSubsystem.outerLiftControl(0);
-		Robot.liftSubsystem.innerLiftControl(0);
+		Robot.liftSubsystem.liftSystemControl(0);
 		// TODO Auto-generated method stub
 		super.end();
 	}

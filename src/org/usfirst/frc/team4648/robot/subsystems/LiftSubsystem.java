@@ -11,7 +11,11 @@ public class LiftSubsystem extends Subsystem {
 
 	private final Spark outerLiftMotorController = RobotMap.outerLiftMotorController;
 	private final Talon innerLiftMotorController = RobotMap.innerLiftMotorController;
-	public static final double LOWER_SPEED_RATE = 0.3;
+	private static final double LOWER_SPEED_RATE = 0.3;
+	
+	public final int singleLiftState = 0;
+	public final int doubleLiftState = 1;
+	public int liftControlState = singleLiftState;
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -19,22 +23,39 @@ public class LiftSubsystem extends Subsystem {
 		setDefaultCommand(new LiftCommand());
 	}
 	
-	public void innerLiftControl(double liftSpeed) {
+	public void setLiftState(int liftState)
+	{
+		liftControlState = liftState;
+	}
+	
+	public void liftSystemControl(double liftSpeed) {
 		if (liftSpeed > 0) {
-			innerLiftMotorController.set(liftSpeed);
+			innerLiftMotorController.set(liftSpeed); // need encoder to control height
+			if (liftControlState == doubleLiftState) {
+				outerLiftMotorController.set(liftSpeed); // need encoder to control height
+			}
+			else {
+				outerLiftMotorController.set(0);
+			}
 		}
 		else {
-			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
+			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+			if (liftControlState == doubleLiftState) {
+				outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+			}
+			else {
+				outerLiftMotorController.set(0);
+			}
 		}
 	}
 	
-	public void outerLiftControl(double liftSpeed) {
-		if (liftSpeed > 0) {
-			outerLiftMotorController.set(liftSpeed);
-		}
-		else {
-			outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
-		}
-	}
+//	public void outerLiftControl(double liftSpeed) {
+//		if (liftSpeed > 0) {
+//			outerLiftMotorController.set(liftSpeed);
+//		}
+//		else {
+//			outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE);
+//		}
+//	}
 	
 }
