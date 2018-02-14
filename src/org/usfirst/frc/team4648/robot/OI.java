@@ -10,6 +10,7 @@ package org.usfirst.frc.team4648.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import org.usfirst.frc.team4648.robot.commands.PathfinderCommand;
+import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -21,9 +22,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI {
 	XboxController controller1 = new XboxController(1);
-	XboxController controller2 = new XboxController(2);
 	
-	//// CREATING BUTTONS
+	//// CREATING BUTTONS - THIS IS UNUSED
 	// You create one by telling it which joystick it's on and which button
 	// number it is.
 	Button leftBumperButton = new XBoxButton(controller1, XBoxButton.kBumperLeft);
@@ -37,9 +37,6 @@ public class OI {
 	Button stickLeft = new XBoxButton(controller1, XBoxButton.kStickLeft);
 	Button stickRight = new XBoxButton(controller1, XBoxButton.kStickRight);
 	
-	Button stickLeft2 = new XBoxButton(controller2, XBoxButton.kStickLeft);
-	Button stickRight2 = new XBoxButton(controller2, XBoxButton.kStickRight);
-	
 	public OI() {
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -51,20 +48,13 @@ public class OI {
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
-	leftBumperButton.whileHeld(new PathfinderCommand());
+		yButton.whileHeld(new PathfinderCommand());
 
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+		bButton.whenPressed(new SetLiftStateCommand(0));
+		xButton.whenPressed(new SetLiftStateCommand(1));
 	 }
-	
-	public double getSpeedLeft() { // unused
-		return  controller1.getY(Hand.kLeft);
-	}
-	
-	public double getSpeedRight() { //unused
-		return controller1.getY(Hand.kRight);
-	}
 	
 	public double getArcardeSpeed() { // DriveCommand
 		return controller1.getY(GenericHID.Hand.kLeft);
@@ -78,27 +68,27 @@ public class OI {
 		return controller1.getY(GenericHID.Hand.kRight);
 	}
 	
-	public double getInnerLiftSpeed() { //LiftCommand
-		return controller2.getY(GenericHID.Hand.kRight);
-	}
-	
-	public double getOuterLiftSpeed() { //LiftCommand
-		return controller2.getY(GenericHID.Hand.kLeft);
-	}
-
 	public boolean getClawToggle() { //ToggleClawCommand
 		return controller1.getAButton();
 	}
 	
-	public boolean getPassiveIntakeToggle() { //IntakeCommand
+	public boolean getSingleLiftToggle() { //ToggleLiftState - not needed if SetLiftStateCommand implementation works
 		return controller1.getBButton();
 	}
+	
+	public boolean getDoubleLiftToggle() { //ToggleLiftState - not needed if SetLiftStateCommand implementation works
+		return controller1.getXButton();
+	}
+	
+	//public boolean getPassiveIntakeToggle() { //IntakeCommand // used on in Prototype
+	//	return controller1.getBButton();
+	//}
 	
 	public double getIntakeSpeed() { //IntakeCommand
 		return controller1.getTriggerAxis(GenericHID.Hand.kRight);
 	}
 	
-	public double getIntakeOutputSpeed() { //IntakeCommand
+	public double getRejectSpeed() { //IntakeCommand
 		return controller1.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 }

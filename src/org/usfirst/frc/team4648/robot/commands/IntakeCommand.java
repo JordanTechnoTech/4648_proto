@@ -19,11 +19,12 @@ public class IntakeCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.intakeSubsystem.passiveIntake(Robot.m_oi.getPassiveIntakeToggle());
+		//passive intake was only needed for prototype robot, not used on final robot
+		//Robot.intakeSubsystem.passiveIntake(Robot.m_oi.getPassiveIntakeToggle());
 		if (Robot.m_oi.getIntakeSpeed() > 0) {
 			Robot.intakeSubsystem.manualIntake(Robot.m_oi.getIntakeSpeed());
-		} else if (Robot.m_oi.getIntakeOutputSpeed() > 0) {
-			Robot.intakeSubsystem.manualIntakeOutput(Robot.m_oi.getIntakeOutputSpeed());
+		} else if (Robot.m_oi.getRejectSpeed() > 0) {
+			Robot.intakeSubsystem.manualReject(Robot.m_oi.getRejectSpeed());
 		}
 	}
 	
@@ -35,12 +36,11 @@ public class IntakeCommand extends Command {
 
 	@Override
 	protected void end() {
-		if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 0) {
+		//if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 0) {
 			RobotMap.intakeWheels.set(0);
-		} else if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 1) {
-			RobotMap.intakeWheels.set(Robot.intakeSubsystem.PASSIVE_INTAKE_SPEED);
-		}
-		// TODO Auto-generated method stub
+		//} else if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 1) {
+		//	RobotMap.intakeWheels.set(Robot.intakeSubsystem.PASSIVE_INTAKE_SPEED);
+		//}
 		super.end();
 	}
 }
