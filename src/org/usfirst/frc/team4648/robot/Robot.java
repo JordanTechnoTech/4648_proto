@@ -23,6 +23,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team4648.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
@@ -45,7 +46,7 @@ public class Robot extends IterativeRobot {
 	public static OI m_oi;
 	public static GearShiftOneSubsystem gearShiftOneSubsystem;
 	public static GearShiftTwoSubsystem gearShiftTwoSubsystem;
-	
+
 	Thread m_visionThread;
 	Command m_autonomousCommand;
 
@@ -71,7 +72,7 @@ public class Robot extends IterativeRobot {
 		Robot.gearShiftOneSubsystem.gearShiftOne();
 		
 		// Autonomous Versions
-		autoChooser.addDefault("Default Program", new AutoDefault);
+		autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
 		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
@@ -118,9 +119,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode. You
+	 * can use it to reset any subsystem information you want to clear when the
+	 * robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
@@ -134,24 +135,25 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString code to get the
+	 * auto name from the text box below the Gyro
 	 *
-	 * <p>You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * <p>
+	 * You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons to
+	 * the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
-		
-		//Switch & Lever field positions
-		String gameData = new String (DriverStation.getInstance().getGameSpecificMessage());
+
+		// Switch & Lever field positions
+		String gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
 		String ourSwitch = gameData.substring(0, 0);
 		String Scale = gameData.substring(1, 1);
 		String opositionSwitich = gameData.substring(2, 2);
-		
+
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = autoChooser.getSelected();
 
@@ -179,7 +181,7 @@ public class Robot extends IterativeRobot {
 			m_autonomousCommand.cancel();
 		}
 	}
-	
+
 	/**
 	 * This function is called periodically during operator control.
 	 */
@@ -195,6 +197,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 	}
+
 	public void log() {
 		driveSubsystem.log();
 	}
