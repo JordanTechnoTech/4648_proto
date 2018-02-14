@@ -31,8 +31,7 @@ public class RobotMap {
 	public static final int ENCODER_TICKS_PER_REVOLUTION = 1440;
 	public static final int MOTION_PROFILE_MAX_VELOCITY = 0;
 	
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
+	// drive components
 	public static int leftDriveMotor1 = 0;
 	public static int leftDriveMotor2 = 1;
 	public static int rightDriveMotor1 = 2;
@@ -42,8 +41,16 @@ public class RobotMap {
 	public static SpeedController rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
 	
-	public static Encoder leftEncoder = new Encoder(1, 2);
-	public static Encoder rightEncoder = new Encoder(3, 4);
+	public static Encoder leftEncoder;
+	public static Encoder rightEncoder;
+	public static int leftEncoder1 = 1;
+	public static int leftEncoder2 = 2;
+	public static int rightEncoder1 = 3;
+	public static int rightEncoder2 = 4;
+	
+	public static Solenoid gearShift;
+	public static int leftGearShift = 5;
+	public static int rightGearShift = 0;
 
 	// robot lift components
 	public static int innerLiftMotor = 5;
@@ -76,6 +83,11 @@ public class RobotMap {
 		leftDriveMotorController = new SpeedControllerGroup(new Spark(leftDriveMotor1), new Spark(leftDriveMotor2));
 		rightDriveMotorController = new SpeedControllerGroup(new Spark(rightDriveMotor1), new Spark(rightDriveMotor2));
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
+		
+		leftEncoder = new Encoder(leftEncoder1, leftEncoder2);
+		rightEncoder = new Encoder(rightEncoder1, rightEncoder2);
+		
+		gearShift = new Solenoid(leftGearShift, rightGearShift);
 
 		// lift initialization
 		outerLiftMotorController = new Spark(outerLiftMotor);
