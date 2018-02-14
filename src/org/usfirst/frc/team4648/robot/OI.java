@@ -74,11 +74,11 @@ public class OI {
 		return controller1.getX(GenericHID.Hand.kLeft);
 	}
 	
-	public boolean getGearShift1() { //DriveCommand
+	public boolean getGearShiftOnePressed() { //DriveCommand
 		return controller1.getBumper(GenericHID.Hand.kLeft);
 	}
 	
-public boolean getGearShift2() { //DriveCommand
+	public boolean getGearShiftTwoPressed() { //DriveCommand
 		return controller1.getBumper(GenericHID.Hand.kRight);
 	}
 	
