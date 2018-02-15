@@ -78,6 +78,10 @@ public class OI {
 	public boolean getClawToggle() { // ToggleClawCommand
 		return controller1.getAButton();
 	}
+	
+	public boolean getActuatorToggle() { // LiftActutatorCommand
+		return controller1.getStartButton();
+	}
 
 	public boolean getSingleLiftToggle() { // ToggleLiftState - not needed if SetLiftStateCommand implementation works
 		return controller1.getBButton();

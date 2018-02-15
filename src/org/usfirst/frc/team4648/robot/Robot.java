@@ -26,6 +26,7 @@ import org.usfirst.frc.team4648.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.LiftActuatorSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.GearShiftOneSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.GearShiftTwoSubsystem;
@@ -41,6 +42,7 @@ public class Robot extends IterativeRobot {
 	public static DriveSubsystem driveSubsystem;
 	public static LiftSubsystem liftSubsystem;
 	public static ClawSubsystem clawSubsystem;
+	public static LiftActuatorSubsystem liftActuatorSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
 	public static OI m_oi;
 	public static GearShiftOneSubsystem gearShiftOneSubsystem;
@@ -63,6 +65,7 @@ public class Robot extends IterativeRobot {
 		liftSubsystem = new LiftSubsystem();
 		clawSubsystem = new ClawSubsystem();
 		intakeSubsystem = new IntakeSubsystem();
+		liftActuatorSubsystem =  new LiftActuatorSubsystem();
 		m_oi = new OI();
 		gearShiftOneSubsystem = new GearShiftOneSubsystem();
 		gearShiftTwoSubsystem = new GearShiftTwoSubsystem();
