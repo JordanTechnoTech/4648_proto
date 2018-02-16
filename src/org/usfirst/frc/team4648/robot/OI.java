@@ -91,7 +91,9 @@ public class OI {
 		return controller1.getXButton();
 	}
 
-	public double climbStatus = controller1.getPOV(); // for the climber
+	public double climbStatus() { // for the climber
+		return controller1.getPOV();
+	}
 	
 	// public boolean getPassiveIntakeToggle() { //IntakeCommand // used on in
 	// Prototype

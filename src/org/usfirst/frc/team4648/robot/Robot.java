@@ -24,6 +24,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4648.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftActuatorSubsystem;
@@ -45,6 +46,7 @@ public class Robot extends IterativeRobot {
 	public static IntakeSubsystem intakeSubsystem;
 	public static OI m_oi;
 	public static GearShiftSubsystem gearShiftSubsystem;
+	public static ClimberSubsystem climberSubsystem;
 
 	Thread m_visionThread;
 	Command m_autonomousCommand;
@@ -66,6 +68,7 @@ public class Robot extends IterativeRobot {
 		liftActuatorSubsystem =  new LiftActuatorSubsystem();
 		m_oi = new OI();
 		gearShiftSubsystem = new GearShiftSubsystem();
+		climberSubsystem = new ClimberSubsystem();
 		
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
