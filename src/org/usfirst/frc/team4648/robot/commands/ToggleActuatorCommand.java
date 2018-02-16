@@ -15,8 +15,8 @@ public class ToggleActuatorCommand extends Command {
 	protected void execute() {
 		if(Robot.m_oi.getActuatorToggle()) {
 			Robot.liftActuatorSubsystem.stateTrue();
-		} else {
-			Robot.liftActuatorSubsystem.stateFalse();
+//		} else {
+//			Robot.liftActuatorSubsystem.stateFalse();
 		}
 	}
 

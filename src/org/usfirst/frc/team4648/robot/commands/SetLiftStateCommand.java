@@ -37,7 +37,7 @@ public class SetLiftStateCommand extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.liftSubsystem.liftSystemControl(0);
+	//	Robot.liftSubsystem.liftSystemControl(0);
 		// TODO Auto-generated method stub
 		super.end();
 	}
