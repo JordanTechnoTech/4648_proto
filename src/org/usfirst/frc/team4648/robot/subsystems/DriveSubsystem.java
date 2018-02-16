@@ -34,11 +34,17 @@ public class DriveSubsystem extends Subsystem {
 	private final ADIS16448_IMU imu = RobotMap.imu;
 
 	public DriveSubsystem() {
+<<<<<<< Updated upstream
 		addChild("Left CIM", (SpeedControllerGroup) leftSpeedController);
 		addChild("Right CIM", (SpeedControllerGroup) rightSpeedController);
 		addChild("IMU", imu);
 		addChild("Left Encoder",RobotMap.leftEncoder);
 		addChild("Right Encoder",RobotMap.rightEncoder);
+=======
+		//addChild("Left CIM", (Spark) leftSpeedController);
+		//addChild("Right CIM", (Spark) rightController);
+		//addChild("IMU", imu);
+>>>>>>> Stashed changes
 		differentialDrive1.setSafetyEnabled(false);
 		differentialDrive1.setExpiration(0.1);
 		differentialDrive1.setMaxOutput(1.0);

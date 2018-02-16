@@ -5,7 +5,7 @@ import org.usfirst.frc.team4648.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveCommand extends Command {
-	public static final double SPEED_RATE = 0.7;
+	public static final double SPEED_RATE = 1;
 	public DriveCommand() {
     		requires(Robot.driveSubsystem);// drivetrain is an instance of our Drivetrain subsystem
     }

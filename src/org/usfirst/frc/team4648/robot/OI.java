@@ -7,7 +7,13 @@
 
 package org.usfirst.frc.team4648.robot;
 
+<<<<<<< Updated upstream
 import org.usfirst.frc.team4648.robot.commands.PathfinderCommand;
+=======
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+
+//import org.usfirst.frc.team4648.robot.commands.PathfinderCommand;
+>>>>>>> Stashed changes
 import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
 import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
@@ -20,6 +26,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+
 	XboxController controller1 = new XboxController(1);
 
 	//// CREATING BUTTONS - THIS IS UNUSED
@@ -35,7 +42,12 @@ public class OI {
 	Button startButton = new XBoxButton(controller1, XBoxButton.kStart);
 	Button stickLeft = new XBoxButton(controller1, XBoxButton.kStickLeft);
 	Button stickRight = new XBoxButton(controller1, XBoxButton.kStickRight);
+<<<<<<< Updated upstream
 
+=======
+	
+	
+>>>>>>> Stashed changes
 	public OI() {
 		//// TRIGGERING COMMANDS WITH BUTTONS
 		// Once you have a button, it's trivial to bind it to a button in one of
@@ -45,16 +57,28 @@ public class OI {
 		// until it is finished as determined by it's isFinished method.
 		// stickLeft.whileHeld(new DriveCommand());
 
+<<<<<<< Updated upstream
 		// Run the command while the button is being held down and interrupt it once
 		// the button is released.
 		yButton.whileHeld(new PathfinderCommand(WayPointChooser.getStops(1, "L").get(0)));
+=======
+	// Run the command while the button is being held down and interrupt it once
+	// the button is released.
+//		yButton.whileHeld(new PathfinderCommand());
+>>>>>>> Stashed changes
 
 		// Start the command when the button is released and let it run the command
 		// until it is finished as determined by it's isFinished method.
 		bButton.whenPressed(new SetLiftStateCommand(0));
 		xButton.whenPressed(new SetLiftStateCommand(1));
+<<<<<<< Updated upstream
 	}
 
+=======
+	 }
+	public double climbStatus = controller1.getPOV(); // for the climber
+	
+>>>>>>> Stashed changes
 	public double getArcardeSpeed() { // DriveCommand
 		return controller1.getY(GenericHID.Hand.kLeft);
 	}

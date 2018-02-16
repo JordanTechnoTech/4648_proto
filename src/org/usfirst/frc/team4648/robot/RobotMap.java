@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * floating around.
  */
 public class RobotMap {
+	
 	public static final double WHEELBASE_WIDTH = 6; //INCHES
 	public static final double WHEEL_DIAMETER = .62; //INCHES
 	public static final int ENCODER_TICKS_PER_REVOLUTION = 1440;
@@ -65,6 +66,11 @@ public class RobotMap {
 	// Intake components
 	public static int intakeMotor = 6;
 	public static Talon intakeWheels;
+	
+	//climing motor
+	public static int climbMotorPort = 7;
+	public static Talon climbMotorController;
+	public int climingStatus = 0;
 
 	// Camera components
 	public static String cameraHost = "axis-camera.local";
@@ -104,6 +110,9 @@ public class RobotMap {
 
 		// intake initialization
 		intakeWheels = new Talon(intakeMotor);
+		
+		//climer initialization
+		climbMotorController = new Talon(climbMotorPort);
 
 		// imu initialization
 		imu = new ADIS16448_IMU();
