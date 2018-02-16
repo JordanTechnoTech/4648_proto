@@ -33,42 +33,39 @@ public class RobotMap {
 	public static final int MOTION_PROFILE_MAX_VELOCITY = 0;
 	
 	// drive components
-	public static int leftDriveMotor1 = 0;
-	public static int leftDriveMotor2 = 1;
-	public static int rightDriveMotor1 = 2;
-	public static int rightDriveMotor2 = 3;
+	public static int rightDriveMotor = 0;
+	public static int leftDriveMotor = 3;
 
-	public static SpeedController leftDriveMotorController;
-	public static SpeedController rightDriveMotorController;
+	public static Spark leftDriveMotorController;
+	public static Spark rightDriveMotorController;
 	public static DifferentialDrive drivetrain;
 	
 	public static Encoder leftEncoder;
 	public static Encoder rightEncoder;
-	public static int leftEncoder1 = 1;
-	public static int leftEncoder2 = 2;
-	public static int rightEncoder1 = 3;
-	public static int rightEncoder2 = 4;
+	public static int leftEncoder1 = 0;
+	public static int leftEncoder2 = 1;
+	public static int rightEncoder1 = 2;
+	public static int rightEncoder2 = 3;
 	
-	public static Solenoid gearShiftLeft, gearShiftRight;
-	public static int leftGearShiftPort = 5;
-	public static int rightGearShiftPort = 0;
+	public static Solenoid gearShift;
+	public static int gearShiftPort = 0;
 
 	// robot lift components
-	public static int innerLiftMotor = 5;
+	public static int innerLiftMotor = 2;
 	public static int outerLiftMotor = 4;
 	public static Spark outerLiftMotorController;
-	public static Talon innerLiftMotorController;
+	public static Spark innerLiftMotorController;
 
 	// claw components
 	public static int clawActuateMotor = 3;
 	public static Solenoid clawActuate;
 
 	// Intake components
-	public static int intakeMotor = 6;
-	public static Talon intakeWheels;
+	public static int intakeMotor = 1;
+	public static Spark intakeWheels;
 	
-	//climing motor
-	public static int climbMotorPort = 7;
+	//climbing motor
+	public static int climbMotorPort = 5;
 	public static Talon climbMotorController;
 	public int climingStatus = 0;
 
@@ -92,28 +89,27 @@ public class RobotMap {
 
 	public static void init() {
 		// drive initialization
-		leftDriveMotorController = new SpeedControllerGroup(new Spark(leftDriveMotor1), new Spark(leftDriveMotor2));
-		rightDriveMotorController = new SpeedControllerGroup(new Spark(rightDriveMotor1), new Spark(rightDriveMotor2));
+		leftDriveMotorController = new Spark(leftDriveMotor);
+		rightDriveMotorController = new Spark(rightDriveMotor);
 		drivetrain = new DifferentialDrive(leftDriveMotorController, rightDriveMotorController);
 		
 		leftEncoder = new Encoder(leftEncoder1, leftEncoder2);
 		rightEncoder = new Encoder(rightEncoder1, rightEncoder2);
 		
-		gearShiftLeft = new Solenoid(leftGearShiftPort);
-		gearShiftLeft = new Solenoid(rightGearShiftPort);
+		gearShift = new Solenoid(gearShiftPort);
 		
 
 		// lift initialization
 		outerLiftMotorController = new Spark(outerLiftMotor);
-		innerLiftMotorController = new Talon(innerLiftMotor);
+		innerLiftMotorController = new Spark(innerLiftMotor);
 
 		// claw initialization
 		clawActuate = new Solenoid(clawActuateMotor);
 
 		// intake initialization
-		intakeWheels = new Talon(intakeMotor);
+		intakeWheels = new Spark(intakeMotor);
 		
-		//climer initialization
+		//climber initialization
 		climbMotorController = new Talon(climbMotorPort);
 
 		// imu initialization
