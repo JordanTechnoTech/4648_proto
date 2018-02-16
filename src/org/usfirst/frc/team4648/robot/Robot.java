@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 		gearShiftSubsystem = new GearShiftSubsystem();
 		
 		// puts the robot into first gear upon startup
-		Robot.gearShiftSubsystem.gearShift();
+		Robot.gearShiftSubsystem.gearShiftOne();
 		
 		// Autonomous Versions
 		//autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
