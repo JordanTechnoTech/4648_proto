@@ -6,10 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SetLiftStateCommand extends Command {
 	int m_liftState = 0;
+	boolean switched = false;
 
 	public SetLiftStateCommand(int liftState) {
 		m_liftState = liftState;
 		requires(Robot.liftSubsystem);
+		
 	}
 	
 	@Override
@@ -21,6 +23,8 @@ public class SetLiftStateCommand extends Command {
 	@Override
 	protected void execute() {
 		Robot.liftSubsystem.setLiftState(m_liftState);
+		switched = true;
+		
 		// I think above is a better implementation - but need to test to verify
 //		if(Robot.m_oi.getSingleLiftToggle()) {
 //			Robot.liftSubsystem.setLiftState(Robot.liftSubsystem.singleLiftState);
@@ -31,12 +35,15 @@ public class SetLiftStateCommand extends Command {
 	
 	@Override
 	protected boolean isFinished() {
+		
 		// TODO Auto-generated method stub
-		return false;
+
+		return switched;
 	}
 	
 	@Override
 	protected void end() {
+		switched = false;
 	//	Robot.liftSubsystem.liftSystemControl(0);
 		// TODO Auto-generated method stub
 		super.end();

@@ -49,9 +49,9 @@ public class RobotMap {
 	public static int rightEncoder1 = 3;
 	public static int rightEncoder2 = 4;
 	
-	public static Solenoid gearShift;
-	public static int leftGearShift = 5;
-	public static int rightGearShift = 0;
+	public static Solenoid gearShiftLeft, gearShiftRight;
+	public static int leftGearShiftPort = 5;
+	public static int rightGearShiftPort = 0;
 
 	// robot lift components
 	public static int innerLiftMotor = 5;
@@ -99,7 +99,9 @@ public class RobotMap {
 		leftEncoder = new Encoder(leftEncoder1, leftEncoder2);
 		rightEncoder = new Encoder(rightEncoder1, rightEncoder2);
 		
-		gearShift = new Solenoid(leftGearShift, rightGearShift);
+		gearShiftLeft = new Solenoid(leftGearShiftPort);
+		gearShiftLeft = new Solenoid(rightGearShiftPort);
+		
 
 		// lift initialization
 		outerLiftMotorController = new Spark(outerLiftMotor);

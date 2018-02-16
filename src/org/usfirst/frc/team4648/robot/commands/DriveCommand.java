@@ -18,7 +18,7 @@ public class DriveCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.driveSubsystem.arcadeDrive(-Robot.m_oi.getArcardeSpeed() * SPEED_RATE, Robot.m_oi.getRotationSpeed() * SPEED_RATE);
+		Robot.driveSubsystem.arcadeDrive(-Robot.m_oi.getArcardeSpeed() * SPEED_RATE, Robot.m_oi.getRotationSpeed() * SPEED_RATE * .88);
 	}
 
 	@Override

@@ -28,8 +28,7 @@ import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftActuatorSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftSubsystem;
-import org.usfirst.frc.team4648.robot.subsystems.GearShiftOneSubsystem;
-import org.usfirst.frc.team4648.robot.subsystems.GearShiftTwoSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.GearShiftSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,8 +44,7 @@ public class Robot extends IterativeRobot {
 	public static LiftActuatorSubsystem liftActuatorSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
 	public static OI m_oi;
-	public static GearShiftOneSubsystem gearShiftOneSubsystem;
-	public static GearShiftTwoSubsystem gearShiftTwoSubsystem;
+	public static GearShiftSubsystem gearShiftOneSubsystem;
 
 	Thread m_visionThread;
 	Command m_autonomousCommand;
@@ -67,14 +65,13 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem = new IntakeSubsystem();
 		liftActuatorSubsystem =  new LiftActuatorSubsystem();
 		m_oi = new OI();
-		gearShiftOneSubsystem = new GearShiftOneSubsystem();
-		gearShiftTwoSubsystem = new GearShiftTwoSubsystem();
+		gearShiftOneSubsystem = new GearShiftSubsystem();
 		
 		// puts the robot into first gear upon startup
 		Robot.gearShiftOneSubsystem.gearShiftOne();
 		
 		// Autonomous Versions
-		autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
+		//autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
 		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
@@ -203,5 +200,6 @@ public class Robot extends IterativeRobot {
 	public void log() {
 		driveSubsystem.log();
 		liftActuatorSubsystem.log();
+		liftSubsystem.log();
 	}
 }

@@ -4,6 +4,7 @@ import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -32,7 +33,7 @@ public class LiftSubsystem extends Subsystem {
 		if (liftSpeed > 0) {
 			innerLiftMotorController.set(liftSpeed); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
-				outerLiftMotorController.set(liftSpeed); // need encoder to control height
+				outerLiftMotorController.set(-liftSpeed); // need encoder to control height
 			}
 			else {
 				outerLiftMotorController.set(0);
@@ -41,14 +42,20 @@ public class LiftSubsystem extends Subsystem {
 		else {
 			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
-				outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+				outerLiftMotorController.set(-liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			}
 			else {
 				outerLiftMotorController.set(0);
 			}
 		}
+		
+		
 	}
-	
+	public void log() {
+		SmartDashboard.putNumber("liftspeed", innerLiftMotorController.get());
+		SmartDashboard.putNumber("lift Control Stat", liftControlState);
+		
+		}
 //	public void outerLiftControl(double liftSpeed) {
 //		if (liftSpeed > 0) {
 //			outerLiftMotorController.set(liftSpeed);
