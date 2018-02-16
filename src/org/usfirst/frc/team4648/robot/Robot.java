@@ -202,5 +202,6 @@ public class Robot extends IterativeRobot {
 
 	public void log() {
 		driveSubsystem.log();
+		liftActuatorSubsystem.log();
 	}
 }

@@ -28,15 +28,11 @@ public class ClawSubsystem extends Subsystem {
 	}
 
 	public void openClaw() {
-
 		clawSolenoid.set(true);
-
 	}
 
 	public void closeClaw() {
-
 		clawSolenoid.set(false);
-
 	}
 
 }

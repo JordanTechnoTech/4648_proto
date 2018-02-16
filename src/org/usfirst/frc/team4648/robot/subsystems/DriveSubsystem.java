@@ -28,15 +28,17 @@ public class DriveSubsystem extends Subsystem {
 	// here. Call these from Commands.
 	
 	private final SpeedController leftSpeedController = RobotMap.leftDriveMotorController;
-	private final SpeedController rightController = RobotMap.rightDriveMotorController;
+	private final SpeedController rightSpeedController = RobotMap.rightDriveMotorController;
 	private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
 
 	private final ADIS16448_IMU imu = RobotMap.imu;
 
 	public DriveSubsystem() {
 		addChild("Left CIM", (SpeedControllerGroup) leftSpeedController);
-		addChild("Right CIM", (SpeedControllerGroup) rightController);
+		addChild("Right CIM", (SpeedControllerGroup) rightSpeedController);
 		addChild("IMU", imu);
+		addChild("Left Encoder",RobotMap.leftEncoder);
+		addChild("Right Encoder",RobotMap.rightEncoder);
 		differentialDrive1.setSafetyEnabled(false);
 		differentialDrive1.setExpiration(0.1);
 		differentialDrive1.setMaxOutput(1.0);
@@ -56,12 +58,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void log() {
-		SmartDashboard.putNumber("DB/String 0", imu.getAngle());
-		SmartDashboard.putString("DB/String 1",
-				"X:" + imu.getAccelX() + " Y:" + imu.getAccelY() + "Z:" + imu.getAccelZ());
-		SmartDashboard.putString("DB/String 2",
-				"X:" + imu.getAccelX() + " Y:" + imu.getAccelY() + "Z:" + imu.getAccelZ());
-
 		SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
 		SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
 		SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
@@ -71,6 +67,11 @@ public class DriveSubsystem extends Subsystem {
 		
 		SmartDashboard.putNumber("Left Sonar Distance: ", RobotMap.leftSonar.getValue());
 		SmartDashboard.putNumber("Right Sonar Distance: ", RobotMap.rightSonar.getValue());
-
+		
+		SmartDashboard.putNumber("Left Speed", leftSpeedController.get());
+		SmartDashboard.putNumber("Right Speed", rightSpeedController.get());
+		
+		SmartDashboard.putNumber("Left Encoder", RobotMap.leftEncoder.get());
+		SmartDashboard.putNumber("Right Encoder", RobotMap.rightEncoder.get());
 	}
 }

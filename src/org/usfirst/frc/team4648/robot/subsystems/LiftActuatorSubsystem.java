@@ -5,6 +5,7 @@ import org.usfirst.frc.team4648.robot.commands.ToggleActuatorCommand;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftActuatorSubsystem extends Subsystem {
 	Solenoid leftLiftActuator = RobotMap.leftLiftActuate;
@@ -30,5 +31,10 @@ public class LiftActuatorSubsystem extends Subsystem {
 		leftLiftActuator.set(false);
 		rightLiftActuator.set(false);
 
+	}
+	
+	public void log() {
+		SmartDashboard.putBoolean("Right Lift actuator", rightLiftActuator.get());
+		SmartDashboard.putBoolean("Left Lift actuator", leftLiftActuator.get());
 	}
 }
