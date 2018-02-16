@@ -15,6 +15,15 @@ public class WayPointChooser {
 
 	static Trajectory.Config trajectoryConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
 			Trajectory.Config.SAMPLES_HIGH, 0.05, 1.7, 2.0, 60.0);
+	
+	public static Trajectory getSimpleTrajectory() {
+		Waypoint[] points = new Waypoint[] {
+			    new Waypoint(-4, -1, Pathfinder.d2r(-45)),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
+			    new Waypoint(-2, -2, 0),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+			    new Waypoint(0, 0, 0)                           // Waypoint @ x=0, y=0,   exit angle=0 radians
+			};
+		return Pathfinder.generate(points,trajectoryConfig);
+	}
 
 	public static List<Trajectory> getStops(int startingPoint, String autonomousCode) {
 		String firstEndStop = "";
@@ -59,7 +68,7 @@ public class WayPointChooser {
 						trajectoryConfig));
 			} else {
 				firstEndStop = "RB";
-				trajectoryList.add(Pathfinder.generate(starting1ToRightBack.toArray(new Waypoint[starting1ToLeftFront.size()]),
+				trajectoryList.add(Pathfinder.generate(starting1ToRightBack.toArray(new Waypoint[starting1ToRightBack.size()]),
 						trajectoryConfig));
 			}
 			break;
@@ -185,6 +194,10 @@ public class WayPointChooser {
 		right.configureEncoder(RobotMap.rightEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION,
 				RobotMap.WHEEL_DIAMETER);
 		right.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, 0);
+	}
+	
+	public static void main(String[] args) {
+		WayPointChooser.getStops(1, "LL");
 	}
 
 }

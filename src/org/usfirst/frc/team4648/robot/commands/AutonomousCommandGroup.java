@@ -9,9 +9,10 @@ import jaci.pathfinder.Trajectory;
 
 public class AutonomousCommandGroup extends CommandGroup {
 	public AutonomousCommandGroup() {
-		List<Trajectory> trajectories = WayPointChooser.getStops(1, "L");
-		addSequential(new PathfinderCommand(trajectories.get(0)));
-		addSequential(new PathfinderCommand(trajectories.get(1)));
-		addSequential(new PathfinderCommand(trajectories.get(2)));
+//		List<Trajectory> trajectories = WayPointChooser.getStops(1, "L");
+//		addSequential(new PathfinderCommand(trajectories.get(0)));
+//		addSequential(new PathfinderCommand(trajectories.get(1)));
+//		addSequential(new PathfinderCommand(trajectories.get(2)));
+		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory()));
 	}
 }
