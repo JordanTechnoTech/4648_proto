@@ -6,12 +6,11 @@ import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Talon;
 
 public class LiftSubsystem extends Subsystem {
 
 	private final Spark outerLiftMotorController = RobotMap.outerLiftMotorController;
-	private final Talon innerLiftMotorController = RobotMap.innerLiftMotorController;
+	private final Spark innerLiftMotorController = RobotMap.innerLiftMotorController;
 	private static final double LOWER_SPEED_RATE = 0.3;
 	
 	public final int singleLiftState = 0;

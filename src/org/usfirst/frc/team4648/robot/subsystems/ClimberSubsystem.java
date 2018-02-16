@@ -4,7 +4,6 @@ import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**

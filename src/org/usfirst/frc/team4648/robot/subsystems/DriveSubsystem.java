@@ -13,9 +13,6 @@ import org.usfirst.frc.team4648.robot.commands.DriveCommand;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,15 +24,15 @@ public class DriveSubsystem extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	private final SpeedController leftSpeedController = RobotMap.leftDriveMotorController;
-	private final SpeedController rightSpeedController = RobotMap.rightDriveMotorController;
+	private final Spark leftDrive = RobotMap.leftDriveMotorController;
+	private final Spark rightDrive = RobotMap.rightDriveMotorController;
 	private final DifferentialDrive differentialDrive1 = RobotMap.drivetrain;
 
 	private final ADIS16448_IMU imu = RobotMap.imu;
 
 	public DriveSubsystem() {
-		addChild("Left CIM", (SpeedControllerGroup) leftSpeedController);
-		addChild("Right CIM", (SpeedControllerGroup) rightSpeedController);
+		addChild("Left CIM", (Spark) leftDrive);
+		addChild("Right CIM", (Spark) rightDrive);
 		addChild("IMU", imu);
 		addChild("Left Encoder",RobotMap.leftEncoder);
 		addChild("Right Encoder",RobotMap.rightEncoder);
@@ -68,8 +65,8 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("Left Sonar Distance: ", RobotMap.leftSonar.getValue());
 		SmartDashboard.putNumber("Right Sonar Distance: ", RobotMap.rightSonar.getValue());
 		
-		SmartDashboard.putNumber("Left Speed", leftSpeedController.get());
-		SmartDashboard.putNumber("Right Speed", rightSpeedController.get());
+		SmartDashboard.putNumber("Left Speed", leftDrive.get());
+		SmartDashboard.putNumber("Right Speed", rightDrive.get());
 		
 		SmartDashboard.putNumber("Left Encoder", RobotMap.leftEncoder.get());
 		SmartDashboard.putNumber("Right Encoder", RobotMap.rightEncoder.get());

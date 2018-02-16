@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 		Robot.gearShiftSubsystem.gearShiftOne();
 		
 		// Autonomous Versions
-		//autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
+		autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
 		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
 		
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
