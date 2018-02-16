@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Climber extends Subsystem {
+public class ClimberSubsystem extends Subsystem {
 	Talon climbMotorController = RobotMap.climbMotorController;
 	
     // Put methods for controlling this subsystem

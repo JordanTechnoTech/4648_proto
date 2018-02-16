@@ -7,17 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GearShiftOneCommand extends Command {
+public class GearShiftCommand extends Command {
 
-    public GearShiftOneCommand() {
+    public GearShiftCommand() {
     	super();
-		requires(Robot.gearShiftOneSubsystem);
+		requires(Robot.gearShiftSubsystem);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (Robot.m_oi.getGearShiftOnePressed()) {
-    		Robot.gearShiftOneSubsystem.gearShiftOne();
+    		Robot.gearShiftSubsystem.gearShiftOne();
+    	} else if (Robot.m_oi.getGearShiftTwoPressed()) {
+        		Robot.gearShiftSubsystem.gearShiftTwo();
     	}
     }
     

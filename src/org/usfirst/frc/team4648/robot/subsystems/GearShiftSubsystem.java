@@ -2,6 +2,7 @@ package org.usfirst.frc.team4648.robot.subsystems;
 
 import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.RobotMap;
+import org.usfirst.frc.team4648.robot.commands.GearShiftCommand;
 import org.usfirst.frc.team4648.robot.commands.GearShiftOneCommand;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -18,13 +19,16 @@ public class GearShiftSubsystem extends Subsystem {
 	Solenoid gearShiftRight = RobotMap.gearShiftRight;
 
 	public void gearShiftOne() {
-		
+		gearShiftLeft.set(false);
+		gearShiftRight.set(false);
+	}
+	
+	public void gearShiftTwo() {
+		gearShiftLeft.set(true);
+		gearShiftRight.set(true);
 	}
 	
     public void initDefaultCommand() {
-    	
-
-    	
-        setDefaultCommand(new GearShiftOneCommand());
+        setDefaultCommand(new GearShiftCommand());
     }
 }

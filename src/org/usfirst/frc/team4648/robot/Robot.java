@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 	public static LiftActuatorSubsystem liftActuatorSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
 	public static OI m_oi;
-	public static GearShiftSubsystem gearShiftOneSubsystem;
+	public static GearShiftSubsystem gearShiftSubsystem;
 
 	Thread m_visionThread;
 	Command m_autonomousCommand;
@@ -65,10 +65,10 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem = new IntakeSubsystem();
 		liftActuatorSubsystem =  new LiftActuatorSubsystem();
 		m_oi = new OI();
-		gearShiftOneSubsystem = new GearShiftSubsystem();
+		gearShiftSubsystem = new GearShiftSubsystem();
 		
 		// puts the robot into first gear upon startup
-		Robot.gearShiftOneSubsystem.gearShiftOne();
+		Robot.gearShiftSubsystem.gearShift();
 		
 		// Autonomous Versions
 		//autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
