@@ -92,44 +92,44 @@ public class WayPointChooser {
 
 		// GET TO SCALE
 		List<Waypoint> leftFrontSwitchToLeftScale = new ArrayList<>();
-		starting1ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		leftFrontSwitchToLeftScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		leftFrontSwitchToLeftScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		leftFrontSwitchToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> leftFrontSwitchToRightScale = new ArrayList<>();
-		starting3ToLeftBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		leftFrontSwitchToRightScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		leftFrontSwitchToRightScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		leftFrontSwitchToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> leftBackSwitchToRightScale = new ArrayList<>();
-		starting3ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		leftBackSwitchToRightScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		leftBackSwitchToRightScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		leftBackSwitchToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> leftBackSwitchToLeftScale = new ArrayList<>();
-		starting1ToRightBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		leftBackSwitchToLeftScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		leftBackSwitchToLeftScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		leftBackSwitchToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 		
 		List<Waypoint> rightFrontSwitchToLeftScale = new ArrayList<>();
-		starting1ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		rightFrontSwitchToLeftScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		rightFrontSwitchToLeftScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		rightFrontSwitchToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> rightFrontSwitchToRightScale = new ArrayList<>();
-		starting3ToLeftBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		rightFrontSwitchToRightScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		rightFrontSwitchToRightScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		rightFrontSwitchToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> rightBackSwitchToRightScale = new ArrayList<>();
-		starting3ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		rightBackSwitchToRightScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		rightBackSwitchToRightScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		rightBackSwitchToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 
 		List<Waypoint> rightBackSwitchToLeftScale = new ArrayList<>();
-		starting1ToRightBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		rightBackSwitchToLeftScale.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
+		rightBackSwitchToLeftScale.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
+		rightBackSwitchToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
 		
 		switch (firstEndStop) {
 		case "LF":
