@@ -73,6 +73,9 @@ public class Robot extends IterativeRobot {
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
 		
+		// Activates the lift actuator
+		Robot.liftActuatorSubsystem.stateTrue();
+		
 		// Autonomous Versions
 		autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
 		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
@@ -155,6 +158,9 @@ public class Robot extends IterativeRobot {
 		String ourSwitch = gameData.substring(0, 0);
 		String Scale = gameData.substring(1, 1);
 		String opositionSwitich = gameData.substring(2, 2);
+		
+		// Lowers the lift actuator
+		Robot.liftActuatorSubsystem.stateFalse();
 
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = autoChooser.getSelected();
