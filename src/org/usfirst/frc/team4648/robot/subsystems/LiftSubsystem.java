@@ -13,7 +13,7 @@ public class LiftSubsystem extends Subsystem {
 
 	private final Spark outerLiftMotorController = RobotMap.outerLiftMotorController;
 	private final Spark innerLiftMotorController = RobotMap.innerLiftMotorController;
-	private static final double LOWER_SPEED_RATE = 0.3;
+	private static final double LOWER_SPEED_RATE = .8;
 	
 	public final int singleLiftState = 0;
 	public final int doubleLiftState = 1;

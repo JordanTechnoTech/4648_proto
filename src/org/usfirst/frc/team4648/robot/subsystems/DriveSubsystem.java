@@ -51,7 +51,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void arcadeDrive(double forwardSpeed, double rotationSpeed) {
-		differentialDrive1.arcadeDrive(-forwardSpeed, rotationSpeed);
+		differentialDrive1.arcadeDrive(forwardSpeed, rotationSpeed);
 	}
 
 	public void log() {

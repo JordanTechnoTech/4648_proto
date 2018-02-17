@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 
 	Command driveCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
+	SendableChooser<Command> positionChooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -77,12 +78,10 @@ public class Robot extends IterativeRobot {
 		Robot.liftActuatorSubsystem.stateTrue();
 		
 		// Autonomous Versions
-		autoChooser.addDefault("Default Program", new AutonomousCommandGroup());
+		positionChooser.addObject("Position 1", new AutonomousCommandGroup());
 		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
 		
-//		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", autoChooser);
+		SmartDashboard.putData("Position Selection for Autonomous", positionChooser);
 		
 		m_visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
@@ -152,18 +151,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-
-		// Switch & Lever field positions
-		String gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
-		String ourSwitch = gameData.substring(0, 0);
-		String Scale = gameData.substring(1, 1);
-		String opositionSwitich = gameData.substring(2, 2);
 		
 		// Lowers the lift actuator
 		Robot.liftActuatorSubsystem.stateFalse();
 
 		// checks which autonomous program is selected to run
-		m_autonomousCommand = autoChooser.getSelected();
+		m_autonomousCommand = positionChooser.getSelected();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
@@ -210,5 +203,9 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.log();
 		liftActuatorSubsystem.log();
 		liftSubsystem.log();
+		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
+		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
+
+		
 	}
 }

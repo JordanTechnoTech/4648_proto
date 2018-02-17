@@ -17,11 +17,11 @@ public class ClimberSubsystem extends Subsystem {
     // here. Call these from Commands.
 	
 	public void climb() {
-		if (315 < Robot.m_oi.climbStatus() && Robot.m_oi.climbStatus() < 360) {
-	    	climbMotorController.set(.5);
+		if (-1 < Robot.m_oi.climbStatus() && Robot.m_oi.climbStatus() < 15) {
+	    	climbMotorController.set(.8);
 	    }
 	    else if (135 < Robot.m_oi.climbStatus() && Robot.m_oi.climbStatus() < 225)  {
-	    	climbMotorController.set(-.25);
+	    	climbMotorController.set(-1);
 	    }
 	    else {
 	    	climbMotorController.set(0);
