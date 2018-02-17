@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4648.robot.subsystems;
 
+import java.awt.Robot;
+
 import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 
@@ -53,6 +55,8 @@ public class LiftSubsystem extends Subsystem {
 	public void log() {
 		SmartDashboard.putNumber("liftspeed", innerLiftMotorController.get());
 		SmartDashboard.putNumber("lift Control Stat", liftControlState);
+		SmartDashboard.putNumber("Inner Encoder", RobotMap.innerEncoder.get());
+		SmartDashboard.putNumber("Outer Encoder", RobotMap.outerEncoder.get());
 		
 		}
 //	public void outerLiftControl(double liftSpeed) {

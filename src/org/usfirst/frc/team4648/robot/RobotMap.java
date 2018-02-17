@@ -53,6 +53,12 @@ public class RobotMap {
 	public static int outerLiftMotor = 4;
 	public static Spark outerLiftMotorController;
 	public static Spark innerLiftMotorController;
+	public static int innerEncoder1 = 4;
+	public static int innerEncoder2 = 5;
+	public static int outerEncoder1 = 6;
+	public static int outerEncoder2 = 7;
+	public static Encoder innerEncoder;
+	public static Encoder outerEncoder;
 
 	// claw components
 	public static int clawActuateMotor = 3;
@@ -100,6 +106,9 @@ public class RobotMap {
 		// lift initialization
 		outerLiftMotorController = new Spark(outerLiftMotor);
 		innerLiftMotorController = new Spark(innerLiftMotor);
+		
+		innerEncoder = new Encoder(innerEncoder1, innerEncoder2);
+		outerEncoder = new Encoder(outerEncoder1, outerEncoder2);
 
 		// claw initialization
 		clawActuate = new Solenoid(clawActuateMotor);
