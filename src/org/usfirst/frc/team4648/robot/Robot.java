@@ -75,10 +75,11 @@ public class Robot extends IterativeRobot {
 		Robot.gearShiftSubsystem.gearShiftOne();
 		
 		// Activates the lift actuator
-		Robot.liftActuatorSubsystem.stateTrue();
+		//Robot.liftActuatorSubsystem.stateTrue();
+		
 		
 		// Autonomous Versions
-		positionChooser.addObject("Position 1", new AutonomousCommandGroup());
+		positionChooser.addDefault("Position 1", new AutonomousCommandGroup());
 		
 		SmartDashboard.putData("Position Selection for Autonomous", positionChooser);
 		
@@ -152,14 +153,13 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		
 		// Lowers the lift actuator
-RobotMap.rightLiftActuate.set(false);
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = positionChooser.getSelected();
 
 		// schedule the autonomous command (example)
-	/*	if (m_autonomousCommand != null) {
+		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
-		}*/
+		}
 	}
 
 	/**
@@ -167,9 +167,9 @@ RobotMap.rightLiftActuate.set(false);
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		//Scheduler.getInstance().run();
-		RobotMap.leftLiftActuate.set(true);
-		RobotMap.rightLiftActuate.set(true);
+		Scheduler.getInstance().run();
+		//RobotMap.leftLiftActuate.set(true);
+		//RobotMap.rightLiftActuate.set(true);
 	}
 
 	@Override

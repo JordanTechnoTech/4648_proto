@@ -2,6 +2,7 @@ package org.usfirst.frc.team4648.robot.commands;
 
 import java.util.List;
 
+import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -21,6 +22,8 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(0)));
 //		addSequential(new PathfinderCommand(trajectories.get(1)));
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
-		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory()));
+		//addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory()));
+		RobotMap.rightLiftActuate.set(true);
+		RobotMap.leftLiftActuate.set(true);
 	}
 }
