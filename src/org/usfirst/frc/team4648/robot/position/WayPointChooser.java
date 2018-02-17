@@ -25,145 +25,132 @@ public class WayPointChooser {
 		return Pathfinder.generate(points,trajectoryConfig);
 	}
 
-	public static List<Trajectory> getStops(int startingPoint, String autonomousCode) {
-		String firstEndStop = "";
-		List<Trajectory> trajectoryList = new ArrayList<>();
-
-		List<Waypoint> starting1ToLeftFront = new ArrayList<>();
-		starting1ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+	// Distances in inches
+	// Rotation assumed at beginning of waypoint (move up 1 waypoint level if at end)
+	public static Trajectory getPathToSwitch(int startingPoint, String autonomousCode) {
+		List<Waypoint> starting1ToLeftSwitch = new ArrayList<>();
+		starting1ToLeftSwitch.add(new Waypoint(132, 0, 0));
+		starting1ToLeftSwitch.add(new Waypoint(0, 12, Pathfinder.d2r(90)));
+		starting1ToLeftSwitch.add(new Waypoint(0, 0, 0));
 		
-		List<Waypoint> starting1ToRightBack = new ArrayList<>();
-		starting1ToRightBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting1ToRightSwitch = new ArrayList<>();
+		starting1ToRightSwitch.add(new Waypoint(196, 0, 0));
+		starting1ToRightSwitch.add(new Waypoint(0, 228, Pathfinder.d2r(90)));
+		starting1ToRightSwitch.add(new Waypoint(-64, 0, Pathfinder.d2r(90)));
+		starting1ToRightSwitch.add(new Waypoint(0, -12, Pathfinder.d2r(90)));
+		starting1ToRightSwitch.add(new Waypoint(0, 0, 0));
 		
-		List<Waypoint> starting2ToLeftFront = new ArrayList<>();
-		starting2ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting2ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting2ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting2ToLeftSwitch = new ArrayList<>();
+		starting2ToLeftSwitch.add(new Waypoint(28, 0, 0));
+		starting2ToLeftSwitch.add(new Waypoint(0, -156, Pathfinder.d2r(270)));
+		starting2ToLeftSwitch.add(new Waypoint(104, 0, Pathfinder.d2r(90)));
+		starting2ToLeftSwitch.add(new Waypoint(0, 12, Pathfinder.d2r(90)));
+		starting2ToLeftSwitch.add(new Waypoint(0, 0, 0));
 		
-		List<Waypoint> starting2ToRightFront = new ArrayList<>();
-		starting2ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting2ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting2ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting2ToRightSwitch = new ArrayList<>();
+		starting2ToRightSwitch.add(new Waypoint(28, 0, 0));
+		starting2ToRightSwitch.add(new Waypoint(0, 72, Pathfinder.d2r(90)));
+		starting2ToRightSwitch.add(new Waypoint(104, 0, Pathfinder.d2r(270)));
+		starting2ToRightSwitch.add(new Waypoint(0, -12, Pathfinder.d2r(270)));
+		starting2ToRightSwitch.add(new Waypoint(0, 0, 0));
 
-		List<Waypoint> starting3ToLeftBack = new ArrayList<>();
-		starting3ToLeftBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting3ToLeftSwitch = new ArrayList<>();
+		starting3ToLeftSwitch.add(new Waypoint(196, 0, 0));
+		starting3ToLeftSwitch.add(new Waypoint(0, -228, Pathfinder.d2r(270)));
+		starting3ToLeftSwitch.add(new Waypoint(-64, 0, Pathfinder.d2r(90)));
+		starting3ToLeftSwitch.add(new Waypoint(0, 12, Pathfinder.d2r(90)));
+		starting3ToLeftSwitch.add(new Waypoint(0, 0, 0));
 
-		List<Waypoint> starting3ToRightFront = new ArrayList<>();
-		starting3ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting3ToRightSwitch = new ArrayList<>();
+		starting3ToRightSwitch.add(new Waypoint(132, 0, 0));
+		starting3ToRightSwitch.add(new Waypoint(0, -12, Pathfinder.d2r(270)));
+		starting3ToRightSwitch.add(new Waypoint(0, 0, 0));
 
 		// GET TO SWITCH
 		switch (startingPoint) {
 		case 1:
 			if (autonomousCode.substring(0, 0).equals("L")) {
-				firstEndStop = "LF";
-				trajectoryList.add(generateTrajectory(starting1ToLeftFront));
+				return generateTrajectory(starting1ToLeftSwitch);
 			} else {
-				firstEndStop = "RB";
-				trajectoryList.add(generateTrajectory(starting1ToRightBack));
+				return generateTrajectory(starting1ToRightSwitch);
 			}
-			break;
 		case 2:
 			if (autonomousCode.substring(0, 0).equals("L")) {
-				firstEndStop = "LF";
-				trajectoryList.add(generateTrajectory(starting2ToLeftFront));
+				return generateTrajectory(starting2ToLeftSwitch);
 			} else {
-				firstEndStop = "RF";
-				trajectoryList.add(generateTrajectory(starting2ToRightFront));
+				return generateTrajectory(starting2ToRightSwitch);
 			}
-			break;
 		case 3:
 			if (autonomousCode.substring(0, 0).equals("L")) {
-				firstEndStop = "LB";
-				trajectoryList.add(generateTrajectory(starting3ToLeftBack));
+				return generateTrajectory(starting3ToLeftSwitch);
 			} else {
-				firstEndStop = "RF";
-				trajectoryList.add(generateTrajectory(starting3ToRightFront));
+				return generateTrajectory(starting3ToRightSwitch);
 			}
-			break;
 		}
-
-		// GET TO SCALE
-		List<Waypoint> leftFrontSwitchToLeftScale = new ArrayList<>();
-		starting1ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> leftFrontSwitchToRightScale = new ArrayList<>();
-		starting3ToLeftBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> leftBackSwitchToRightScale = new ArrayList<>();
-		starting3ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> leftBackSwitchToLeftScale = new ArrayList<>();
-		starting1ToRightBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		return null;
+	}
+	
+	public static Trajectory getPathToScale(int startingPoint,String autonomousCode) {
+		List<Waypoint> starting1ToLeftScale = new ArrayList<>();
+		starting1ToLeftScale.add(new Waypoint(288, 0, 0));
+		starting1ToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(90)));
+		starting1ToLeftScale.add(new Waypoint(0, 0, 0));
 		
-		List<Waypoint> rightFrontSwitchToLeftScale = new ArrayList<>();
-		starting1ToLeftFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToLeftFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> rightFrontSwitchToRightScale = new ArrayList<>();
-		starting3ToLeftBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToLeftBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> rightBackSwitchToRightScale = new ArrayList<>();
-		starting3ToRightFront.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting3ToRightFront.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
-
-		List<Waypoint> rightBackSwitchToLeftScale = new ArrayList<>();
-		starting1ToRightBack.add(new Waypoint(-4, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(-2, -1, Pathfinder.d2r(-45)));
-		starting1ToRightBack.add(new Waypoint(0, 0, Pathfinder.d2r(-45)));
+		List<Waypoint> starting1ToRightScale = new ArrayList<>();
+		starting1ToRightScale.add(new Waypoint(196, 0, 0));
+		starting1ToRightScale.add(new Waypoint(0, 228, Pathfinder.d2r(90)));
+		starting1ToRightScale.add(new Waypoint(92, 0, Pathfinder.d2r(90)));
+		starting1ToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(90)));
+		starting1ToRightScale.add(new Waypoint(0, 0, 0));
 		
-		switch (firstEndStop) {
-		case "LF":
+		List<Waypoint> starting2ToLeftScale = new ArrayList<>();
+		starting2ToLeftScale.add(new Waypoint(28, 0, 0));
+		starting2ToLeftScale.add(new Waypoint(0, -156, Pathfinder.d2r(270)));
+		starting2ToLeftScale.add(new Waypoint(260, 0, Pathfinder.d2r(90)));
+		starting2ToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(90)));
+		starting2ToLeftScale.add(new Waypoint(0, 0, 0));
+		
+		List<Waypoint> starting2ToRightScale = new ArrayList<>();
+		starting2ToRightScale.add(new Waypoint(28, 0, 0));
+		starting2ToRightScale.add(new Waypoint(0, 72, Pathfinder.d2r(90)));
+		starting2ToRightScale.add(new Waypoint(260, 0, Pathfinder.d2r(270)));
+		starting2ToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(270)));
+		starting2ToRightScale.add(new Waypoint(0, 0, 0));
+
+		List<Waypoint> starting3ToLeftScale = new ArrayList<>();
+		starting3ToLeftScale.add(new Waypoint(196, 0, 0));
+		starting3ToLeftScale.add(new Waypoint(0, -228, Pathfinder.d2r(270)));
+		starting3ToLeftScale.add(new Waypoint(92, 0, Pathfinder.d2r(90)));
+		starting3ToLeftScale.add(new Waypoint(0, 0, Pathfinder.d2r(90)));
+		starting3ToLeftScale.add(new Waypoint(0, 0, 0));
+
+		List<Waypoint> starting3ToRightScale = new ArrayList<>();
+		starting3ToRightScale.add(new Waypoint(228, 0, 0));
+		starting3ToRightScale.add(new Waypoint(0, 0, Pathfinder.d2r(270)));
+		starting3ToRightScale.add(new Waypoint(0, 0, 0));
+
+		// GET TO SWITCH
+		switch (startingPoint) {
+		case 1:
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(generateTrajectory(leftFrontSwitchToLeftScale));
+				return generateTrajectory(starting1ToLeftScale);
 			} else {
-				trajectoryList.add(generateTrajectory(leftFrontSwitchToRightScale));
+				return generateTrajectory(starting1ToRightScale);
 			}
-			break;
-		case "LB":
+		case 2:
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(generateTrajectory(leftBackSwitchToLeftScale));
+				return generateTrajectory(starting2ToLeftScale);
 			} else {
-				trajectoryList.add(generateTrajectory(leftBackSwitchToRightScale));
+				return generateTrajectory(starting2ToRightScale);
 			}
-			break;
-		case "RF":
+		case 3:
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(generateTrajectory(rightFrontSwitchToLeftScale));
+				return generateTrajectory(starting3ToLeftScale);
 			} else {
-				trajectoryList.add(generateTrajectory(rightFrontSwitchToRightScale));
+				return generateTrajectory(starting3ToRightScale);
 			}
-			break;
-		case "RB":
-			if (autonomousCode.substring(0, 0).equals("L")) {
-				trajectoryList.add(generateTrajectory(rightBackSwitchToLeftScale));
-			} else {
-				firstEndStop = "RF";
-				trajectoryList.add(generateTrajectory(rightBackSwitchToRightScale));
-			}
-			break;
 		}
-
-		return trajectoryList;
+		return null;
 	}
 
 	public static void followPath(Trajectory trajectory) {
@@ -183,7 +170,7 @@ public class WayPointChooser {
 	}
 	
 	public static void main(String[] args) {
-		WayPointChooser.getStops(1, "LL");
+		WayPointChooser.getPathToSwitch(1, "LL");
 	}
 	
 	public static Trajectory generateTrajectory(List<Waypoint> wayPoints) {
