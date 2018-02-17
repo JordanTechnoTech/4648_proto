@@ -64,34 +64,28 @@ public class WayPointChooser {
 		case 1:
 			if (autonomousCode.substring(0, 0).equals("L")) {
 				firstEndStop = "LF";
-				trajectoryList.add(Pathfinder.generate(starting1ToLeftFront.toArray(new Waypoint[starting1ToLeftFront.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting1ToLeftFront));
 			} else {
 				firstEndStop = "RB";
-				trajectoryList.add(Pathfinder.generate(starting1ToRightBack.toArray(new Waypoint[starting1ToRightBack.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting1ToRightBack));
 			}
 			break;
 		case 2:
 			if (autonomousCode.substring(0, 0).equals("L")) {
 				firstEndStop = "LF";
-				trajectoryList.add(Pathfinder.generate(starting2ToLeftFront.toArray(new Waypoint[starting2ToLeftFront.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting2ToLeftFront));
 			} else {
 				firstEndStop = "RF";
-				trajectoryList.add(Pathfinder.generate(starting2ToRightFront.toArray(new Waypoint[starting2ToRightFront.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting2ToRightFront));
 			}
 			break;
 		case 3:
 			if (autonomousCode.substring(0, 0).equals("L")) {
 				firstEndStop = "LB";
-				trajectoryList.add(Pathfinder.generate(starting3ToLeftBack.toArray(new Waypoint[starting1ToLeftFront.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting3ToLeftBack));
 			} else {
 				firstEndStop = "RF";
-				trajectoryList.add(Pathfinder.generate(starting3ToRightFront.toArray(new Waypoint[starting1ToLeftFront.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(starting3ToRightFront));
 			}
 			break;
 		}
@@ -140,39 +134,31 @@ public class WayPointChooser {
 		switch (firstEndStop) {
 		case "LF":
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(Pathfinder.generate(leftFrontSwitchToLeftScale.toArray(new Waypoint[leftFrontSwitchToLeftScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(leftFrontSwitchToLeftScale));
 			} else {
-				trajectoryList.add(Pathfinder.generate(leftFrontSwitchToRightScale.toArray(new Waypoint[leftFrontSwitchToRightScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(leftFrontSwitchToRightScale));
 			}
 			break;
 		case "LB":
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(Pathfinder.generate(leftBackSwitchToLeftScale.toArray(new Waypoint[leftBackSwitchToLeftScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(leftBackSwitchToLeftScale));
 			} else {
-				trajectoryList.add(Pathfinder.generate(leftBackSwitchToRightScale.toArray(new Waypoint[leftBackSwitchToRightScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(leftBackSwitchToRightScale));
 			}
 			break;
 		case "RF":
 			if (autonomousCode.substring(1, 1).equals("L")) {
-				trajectoryList.add(Pathfinder.generate(rightFrontSwitchToLeftScale.toArray(new Waypoint[rightFrontSwitchToLeftScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(rightFrontSwitchToLeftScale));
 			} else {
-				trajectoryList.add(Pathfinder.generate(rightFrontSwitchToRightScale.toArray(new Waypoint[rightFrontSwitchToRightScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(rightFrontSwitchToRightScale));
 			}
 			break;
 		case "RB":
 			if (autonomousCode.substring(0, 0).equals("L")) {
-				trajectoryList.add(Pathfinder.generate(rightBackSwitchToLeftScale.toArray(new Waypoint[rightBackSwitchToLeftScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(rightBackSwitchToLeftScale));
 			} else {
 				firstEndStop = "RF";
-				trajectoryList.add(Pathfinder.generate(rightBackSwitchToRightScale.toArray(new Waypoint[rightBackSwitchToRightScale.size()]),
-						trajectoryConfig));
+				trajectoryList.add(generateTrajectory(rightBackSwitchToRightScale));
 			}
 			break;
 		}
@@ -198,6 +184,10 @@ public class WayPointChooser {
 	
 	public static void main(String[] args) {
 		WayPointChooser.getStops(1, "LL");
+	}
+	
+	public static Trajectory generateTrajectory(List<Waypoint> wayPoints) {
+		return Pathfinder.generate(wayPoints.toArray(new Waypoint[wayPoints.size()]),trajectoryConfig);
 	}
 
 }
