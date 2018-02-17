@@ -18,7 +18,7 @@ public class ClimberSubsystem extends Subsystem {
 	
 	public void climb() {
 		if (-1 < Robot.m_oi.climbStatus() && Robot.m_oi.climbStatus() < 15) {
-	    	climbMotorController.set(.8);
+	    	climbMotorController.set(1);
 	    }
 	    else if (135 < Robot.m_oi.climbStatus() && Robot.m_oi.climbStatus() < 225)  {
 	    	climbMotorController.set(-1);

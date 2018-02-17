@@ -79,7 +79,6 @@ public class Robot extends IterativeRobot {
 		
 		// Autonomous Versions
 		positionChooser.addObject("Position 1", new AutonomousCommandGroup());
-		SmartDashboard.putData("Autonomous Mode Selection", autoChooser);
 		
 		SmartDashboard.putData("Position Selection for Autonomous", positionChooser);
 		
@@ -147,21 +146,20 @@ public class Robot extends IterativeRobot {
 	 * <p>
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons to
-	 * the switch structure below with additional strings & commands.
+	 * t,he switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
 		
 		// Lowers the lift actuator
-		Robot.liftActuatorSubsystem.stateFalse();
-
+RobotMap.rightLiftActuate.set(false);
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = positionChooser.getSelected();
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
+	/*	if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
-		}
+		}*/
 	}
 
 	/**
@@ -169,7 +167,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+		//Scheduler.getInstance().run();
+		RobotMap.leftLiftActuate.set(true);
+		RobotMap.rightLiftActuate.set(true);
 	}
 
 	@Override
