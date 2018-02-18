@@ -22,7 +22,29 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(0)));
 //		addSequential(new PathfinderCommand(trajectories.get(1)));
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
-		//addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory()));
-		addSequential(new AutoLiftCommand());
+		
+		// Set lift from starting position (back) to running position (upright)
+		addSequential(new AutoLiftCommand()); 
+		
+		// Get trajectory path
+		// Based on :
+		// (1) assigned alliance station 1, 2, or 3, input from driver station button
+		// (2) program selection (1 = to switch, 2 = to scale), also input from driver station button
+		// (3) GameSpecifcMessage sent at start for assigned switch and scale sides,
+		//     autonomous only care about near switch
+		//addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); // returns a trajectory to follow
+		
+		// Follow trajectory path
+		//addSequential(new PathfinderCommand(WayPointChooser.followPath(autoTrajectory)));
+		
+		// Set lift height to switch or scale height
+		// int switchHeight = ??;
+		// int scaleHeight = ??;
+		// chosen based on program selection (1 = to switch, 2 = to scale)
+		//addSequential(new SetLiftHeightCommand()); 
+		
+		// Eject the cube
+		//addSequential(new AutoEject());
+		
 	}
 }

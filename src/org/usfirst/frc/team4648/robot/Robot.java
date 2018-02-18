@@ -153,9 +153,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		// Lowers the lift actuator
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = positionChooser.getSelected();
+		
+		// TODO: getGameSpecificData to know the alliance's plate (switch/scale) assignments
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
