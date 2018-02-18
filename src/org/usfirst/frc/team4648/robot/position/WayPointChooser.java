@@ -18,8 +18,8 @@ public class WayPointChooser {
 	
 	public static Trajectory getSimpleTrajectory() {
 		Waypoint[] points = new Waypoint[] {
-			    new Waypoint(-4, -1, Pathfinder.d2r(-45)),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-			    new Waypoint(-2, -2, 0),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+			    new Waypoint(4, 4, Pathfinder.d2r(-45)),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
+			    new Waypoint(2, 2, 0),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
 			    new Waypoint(0, 0, 0)                           // Waypoint @ x=0, y=0,   exit angle=0 radians
 			};
 		return Pathfinder.generate(points,trajectoryConfig);
@@ -162,11 +162,11 @@ public class WayPointChooser {
 		// Initialize
 		left.configureEncoder(RobotMap.leftEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION,
 				RobotMap.WHEEL_DIAMETER);
-		left.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, 0);
+		left.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, .1);
 
 		right.configureEncoder(RobotMap.rightEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION,
 				RobotMap.WHEEL_DIAMETER);
-		right.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, 0);
+		right.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, .1);
 	}
 	
 	public static void main(String[] args) {
