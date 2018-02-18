@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4648.robot.subsystems;
 
 import org.usfirst.frc.team4648.robot.RobotMap;
-import org.usfirst.frc.team4648.robot.commands.ToggleActuatorCommand;
+import org.usfirst.frc.team4648.robot.commands.LiftActuatorCommand;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +19,7 @@ public class LiftActuatorSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new ToggleActuatorCommand());
+	//	setDefaultCommand(new LiftActuatorCommand());
 	}
 
 	public void stateTrue() {

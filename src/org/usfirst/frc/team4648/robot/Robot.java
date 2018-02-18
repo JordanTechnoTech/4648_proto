@@ -70,6 +70,8 @@ public class Robot extends IterativeRobot {
 		m_oi = new OI();
 		gearShiftSubsystem = new GearShiftSubsystem();
 		climberSubsystem = new ClimberSubsystem();
+		liftActuatorSubsystem.stateFalse();
+		
 		
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
@@ -151,7 +153,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
 		// Lowers the lift actuator
 		// checks which autonomous program is selected to run
 		m_autonomousCommand = positionChooser.getSelected();
@@ -170,6 +171,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		//RobotMap.leftLiftActuate.set(true);
 		//RobotMap.rightLiftActuate.set(true);
+		log();
 	}
 
 	@Override

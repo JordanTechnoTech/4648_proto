@@ -23,7 +23,6 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(1)));
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
 		//addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory()));
-		RobotMap.rightLiftActuate.set(true);
-		RobotMap.leftLiftActuate.set(true);
+		addSequential(new AutoLiftCommand());
 	}
 }
