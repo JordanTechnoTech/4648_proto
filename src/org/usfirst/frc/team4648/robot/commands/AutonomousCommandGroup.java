@@ -24,7 +24,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
 		
 		// Set lift from starting position (back) to running position (upright)
-		addSequential(new AutoLiftCommand()); 
+//		addSequential(new AutoLiftCommand()); 
 		
 		// Get trajectory path
 		// Based on :
@@ -32,7 +32,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 		// (2) program selection (1 = to switch, 2 = to scale), also input from driver station button
 		// (3) GameSpecifcMessage sent at start for assigned switch and scale sides,
 		//     autonomous only care about near switch
-		//addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); // returns a trajectory to follow
+		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); // returns a trajectory to follow
 		
 		// Follow trajectory path
 		//addSequential(new PathfinderCommand(WayPointChooser.followPath(autoTrajectory)));
