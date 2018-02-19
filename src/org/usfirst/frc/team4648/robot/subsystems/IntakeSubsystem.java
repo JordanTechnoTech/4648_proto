@@ -5,6 +5,7 @@ import org.usfirst.frc.team4648.robot.commands.IntakeCommand;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeSubsystem extends Subsystem {
 	Spark intakeWheels = RobotMap.intakeWheels;
@@ -32,5 +33,9 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void manualReject(double IntakeOutputSpeed) {
 		intakeWheels.set(-IntakeOutputSpeed);
+	}
+	
+	public void log() {
+		SmartDashboard.putNumber("Intake Wheels", intakeWheels.get());
 	}
 }

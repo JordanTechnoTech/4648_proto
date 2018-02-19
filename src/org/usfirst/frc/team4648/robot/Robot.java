@@ -206,9 +206,8 @@ public class Robot extends IterativeRobot {
 		driveSubsystem.log();
 		liftActuatorSubsystem.log();
 		liftSubsystem.log();
+		intakeSubsystem.log();
 		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
 		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
-
-		
 	}
 }

@@ -1,16 +1,18 @@
 package org.usfirst.frc.team4648.robot.commands;
 
+import org.usfirst.frc.team4648.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
  */
-public class AutoIntakeEject extends TimedCommand {
+public class AutoIntakeEjectCommand extends TimedCommand {
+	public static final double AUTO_INTAKE_OUT_SPEED= .33;
 
-    public AutoIntakeEject(double timeout) {
+    public AutoIntakeEjectCommand(double timeout) {
         super(timeout);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -19,10 +21,12 @@ public class AutoIntakeEject extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    		Robot.intakeSubsystem.manualReject(AUTO_INTAKE_OUT_SPEED);
     }
 
     // Called once after timeout
     protected void end() {
+    		Robot.intakeSubsystem.manualIntake(.25);
     }
 
     // Called when another command which requires one or more of the same

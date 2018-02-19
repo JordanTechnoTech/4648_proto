@@ -45,7 +45,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 		//addSequential(new SetLiftHeightCommand()); 
 		
 		// Eject the cube
-		//addSequential(new AutoEject());
+		addSequential(new AutoIntakeEjectCommand(2.0));
 		
 	}
 }
