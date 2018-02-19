@@ -66,7 +66,7 @@ public class RobotMap {
 	
 	//climbing motor
 	public static int climbMotorPort = 5;
-	public static Talon climbMotorController;
+	public static Spark climbMotorController;
 	public int climingStatus = 0;
 
 	// Camera components
@@ -113,7 +113,7 @@ public class RobotMap {
 		intakeWheels = new Spark(intakeMotor);
 		
 		//climber initialization
-		climbMotorController = new Talon(climbMotorPort);
+		climbMotorController = new Spark(climbMotorPort);
 
 		// imu initialization
 		imu = new ADIS16448_IMU();

@@ -4,14 +4,14 @@ import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.ClimberCommand;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class ClimberSubsystem extends Subsystem {
-	Talon climbMotorController = RobotMap.climbMotorController;
+	Spark climbMotorController = RobotMap.climbMotorController;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
