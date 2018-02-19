@@ -16,10 +16,24 @@ public class PathfinderCommand extends Command {
 
 	private EncoderFollower left;
 	private EncoderFollower right;
+	private Trajectory trajectory;
 
 
 	public PathfinderCommand(Trajectory trajectory) {
-		
+		this.trajectory = trajectory;
+	}
+	
+
+	@Override
+	public synchronized void start() {
+		SmartDashboard.putBoolean("Autonomous Running",true);
+		super.start();
+	}
+
+	
+
+	@Override
+	protected void initialize() {
 		TankModifier modifier = new TankModifier(trajectory).modify(0.5);
 		left = new EncoderFollower(modifier.getLeftTrajectory());
 		right = new EncoderFollower(modifier.getRightTrajectory());
@@ -29,14 +43,8 @@ public class PathfinderCommand extends Command {
 		
 		left.configurePIDVA(0.5, 0, 0, 0.3, 0.08); 
 		right.configurePIDVA(0.5, 0, 0, 0.3, 0.08);
-	}
-	
-
-	@Override
-	public synchronized void start() {
 		// TODO Auto-generated method stub
-		SmartDashboard.putBoolean("Autonomous Running",true);
-		super.start();
+		super.initialize();
 	}
 
 
@@ -58,6 +66,16 @@ public class PathfinderCommand extends Command {
 	    	Robot.driveSubsystem.tankDrive(l+turn, r-turn);
 	    	log();
 	}
+	
+	
+
+	@Override
+	protected void end() {
+		Robot.driveSubsystem.tankDrive(0.0,0.0);
+		// TODO Auto-generated method stub
+		super.end();
+	}
+
 
 	@Override
 	protected boolean isFinished() {
