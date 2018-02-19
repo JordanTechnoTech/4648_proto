@@ -3,6 +3,7 @@ package org.usfirst.frc.team4648.robot.position;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
@@ -71,20 +72,26 @@ public class WayPointChooser {
 		switch (startingPoint) {
 		case 1:
 			if (autonomousCode.substring(0, 0).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting1ToLeftSwitch");
 				return generateTrajectory(starting1ToLeftSwitch);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting1ToRightwitch");
 				return generateTrajectory(starting1ToRightSwitch);
 			}
 		case 2:
 			if (autonomousCode.substring(0, 0).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting2ToLeftSwitch");
 				return generateTrajectory(starting2ToLeftSwitch);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting2ToRightSwitch");
 				return generateTrajectory(starting2ToRightSwitch);
 			}
 		case 3:
 			if (autonomousCode.substring(0, 0).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting3ToLeftSwitch");
 				return generateTrajectory(starting3ToLeftSwitch);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting3ToRightSwitch");
 				return generateTrajectory(starting3ToRightSwitch);
 			}
 		}
@@ -126,24 +133,30 @@ public class WayPointChooser {
 		starting3ToRightScale.add(new Waypoint(i2m(228), 0, Pathfinder.d2r(270)));
 		starting3ToRightScale.add(new Waypoint(0, 0, 0));
 
-		// GET TO SWITCH
+		// GET TO SCALE
 		switch (startingPoint) {
 		case 1:
 			if (autonomousCode.substring(1, 1).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting1ToLeftScale");
 				return generateTrajectory(starting1ToLeftScale);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting1ToRightScale");
 				return generateTrajectory(starting1ToRightScale);
 			}
 		case 2:
 			if (autonomousCode.substring(1, 1).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting2ToLeftScale");
 				return generateTrajectory(starting2ToLeftScale);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting2ToRightScale");
 				return generateTrajectory(starting2ToRightScale);
 			}
 		case 3:
 			if (autonomousCode.substring(1, 1).equals("L")) {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting3ToLeftScale");
 				return generateTrajectory(starting3ToLeftScale);
 			} else {
+				SmartDashboard.putString("Autonomous Mode Confirmation", "starting3ToRightScale");
 				return generateTrajectory(starting3ToRightScale);
 			}
 		}

@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
 		autonomousChooser.addObject("Station 3 to Switch", new AutonomousCommandGroup(3));
 		autonomousChooser.addObject("Station 1 to Scale", new AutonomousCommandGroup(4));
 		autonomousChooser.addObject("Station 2 to Scale", new AutonomousCommandGroup(5));
-		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(5));
+		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(6));
 		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
 		
 		m_visionThread = new Thread(() -> {
@@ -213,5 +213,7 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem.log();
 		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
 		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
+		SmartDashboard.getString(gameData, null);
+		
 	}
 }
