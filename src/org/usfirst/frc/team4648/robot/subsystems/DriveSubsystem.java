@@ -55,6 +55,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void log() {
+		SmartDashboard.putNumber("Gyro-Angle", imu.getAngle());
 		SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
 		SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
 		SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());

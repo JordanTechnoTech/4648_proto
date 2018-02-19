@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4648.robot.commands;
 
-import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

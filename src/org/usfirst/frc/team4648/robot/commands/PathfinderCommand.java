@@ -51,6 +51,8 @@ public class PathfinderCommand extends Command {
 		left = new EncoderFollower(modifier.getLeftTrajectory());
 		right = new EncoderFollower(modifier.getRightTrajectory());
 
+		RobotMap.leftEncoder.reset();
+		RobotMap.rightEncoder.reset();
 		left.configureEncoder(RobotMap.leftEncoder.get(), ENCODER_TICKS_PER_REVOLUTION, WHEEL_DIAMETER);
 		right.configureEncoder(RobotMap.rightEncoder.get(), ENCODER_TICKS_PER_REVOLUTION, WHEEL_DIAMETER);
 
