@@ -18,8 +18,8 @@ public class LiftSubsystem extends Subsystem {
 	public int liftControlState = singleLiftState;
 	public double liftControlHeight = 0;
 	
-	public final double switchHeight = 0;  //TODO: Determine height, Limit Switch?
-	public final double scaleHeight = 0; //TODO: Determine height, Limit Switch?
+	public static double switchHeight = 0;  //TODO: Determine height, Limit Switch?
+	public static double scaleHeight = 0; 
 	
 	public LiftSubsystem() {
 		//TODO: Update with actual installed encoders - Possibly change to just limit switch
