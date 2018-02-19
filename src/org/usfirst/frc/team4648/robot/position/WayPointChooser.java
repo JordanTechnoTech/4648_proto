@@ -3,13 +3,9 @@ package org.usfirst.frc.team4648.robot.position;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4648.robot.RobotMap;
-
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
-import jaci.pathfinder.followers.EncoderFollower;
-import jaci.pathfinder.modifiers.TankModifier;
 
 public class WayPointChooser {
 
@@ -154,21 +150,6 @@ public class WayPointChooser {
 		return null;
 	}
 
-	public static void followPath(Trajectory trajectory) {
-		TankModifier tank = new TankModifier(trajectory).modify(RobotMap.WHEELBASE_WIDTH);
-
-		EncoderFollower left = new EncoderFollower(tank.getLeftTrajectory());
-		EncoderFollower right = new EncoderFollower(tank.getRightTrajectory());
-
-		// Initialize
-		left.configureEncoder(RobotMap.leftEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION,
-				RobotMap.WHEEL_DIAMETER);
-		left.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, .1);
-
-		right.configureEncoder(RobotMap.rightEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION,
-				RobotMap.WHEEL_DIAMETER);
-		right.configurePIDVA(1, 0, 0, 1 / RobotMap.MOTION_PROFILE_MAX_VELOCITY, .1);
-	}
 	
 	public static void main(String[] args) {
 		WayPointChooser.getSimpleTrajectory();
