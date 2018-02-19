@@ -1,13 +1,11 @@
 package org.usfirst.frc.team4648.robot.subsystems;
 
-import java.awt.Robot;
-
 import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.commands.LiftCommand;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Spark;
 
 public class LiftSubsystem extends Subsystem {
 

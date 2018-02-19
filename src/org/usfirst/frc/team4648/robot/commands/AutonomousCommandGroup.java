@@ -1,13 +1,8 @@
 package org.usfirst.frc.team4648.robot.commands;
 
-import java.util.List;
-
-import org.usfirst.frc.team4648.robot.RobotMap;
 import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import jaci.pathfinder.Trajectory;
 
 public class AutonomousCommandGroup extends CommandGroup {
 	
@@ -24,11 +19,9 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
 		
 		// Turn intake on to hold cube in space
-		//addSequential(new AutoIntakeOnCommand());
-		//wait one second before proceeding
-		
+		addSequential(new AutoIntakeCommand(.25, .25, true));
 		// Set lift from starting position (back) to running position (upright)
-//		addSequential(new AutoLiftCommand()); 
+		addSequential(new AutoLiftAcuatorCommand()); 
 		
 		// Get trajectory path
 		// Based on :
@@ -44,8 +37,8 @@ public class AutonomousCommandGroup extends CommandGroup {
 		// chosen based on program selection (1 = to switch, 2 = to scale)
 		//addSequential(new SetLiftHeightCommand()); 
 		
-		// Eject the cube
-		addSequential(new AutoIntakeEjectCommand(2.0));
+		// Eject the cube 
+		addSequential(new AutoIntakeCommand(2.0, .5, false));
 		
 	}
 }

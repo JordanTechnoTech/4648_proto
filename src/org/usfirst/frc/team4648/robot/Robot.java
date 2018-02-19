@@ -7,17 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -26,10 +15,20 @@ import org.usfirst.frc.team4648.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team4648.robot.subsystems.GearShiftSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftActuatorSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.LiftSubsystem;
-import org.usfirst.frc.team4648.robot.subsystems.GearShiftSubsystem;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
