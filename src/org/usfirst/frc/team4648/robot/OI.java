@@ -7,9 +7,7 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import org.usfirst.frc.team4648.robot.commands.PathfinderCommand;
 import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
-import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;

@@ -1,35 +1,29 @@
 package org.usfirst.frc.team4648.robot.commands;
 
+import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.position.WayPointChooser;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCommandGroup extends CommandGroup {
 	
-	// Switch & Lever field positions
-//	String gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
-//	String ourSwitch = gameData.substring(0, 0);
-//	String Scale = gameData.substring(1, 1);
-//	String opositionSwitich = gameData.substring(2, 2);
-	
-	public AutonomousCommandGroup() {
-//		List<Trajectory> trajectories = WayPointChooser.getStops(1, "L");
-//		addSequential(new PathfinderCommand(trajectories.get(0)));
-//		addSequential(new PathfinderCommand(trajectories.get(1)));
-//		addSequential(new PathfinderCommand(trajectories.get(2)));
-		
+	public AutonomousCommandGroup(int autoChosen) { // Research how to add 2 parameters here, is it based on extended Command 
 		// Turn intake on to hold cube in space
 		addSequential(new AutoIntakeCommand(.25, .25, true));
 		// Set lift from starting position (back) to running position (upright)
 		addSequential(new AutoLiftAcuatorCommand()); 
 		
-		// Get trajectory path
-		// Based on :
-		// (1) assigned alliance station 1, 2, or 3, input from driver station button
-		// (2) program selection (1 = to switch, 2 = to scale), also input from driver station button
-		// (3) GameSpecifcMessage sent at start for assigned switch and scale sides,
-		//     autonomous only care about near switch
-		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); // returns a trajectory to follow
+		// Get trajectory and drive
+		// Test Code: Get and follow simple trajectory
+		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); 
+//		// Match Play Code: Get and follow trajectory - Needs to be field tested
+//		// Based on autonomous program chosen and switch/scale assignments from GameSpecificMessage
+//		if (autoChosen <= 3){
+//			addSequential(new PathfinderCommand(WayPointChooser.getPathToSwitch(autoChosen, Robot.gameData)));
+//		} 
+//		else {
+//			addSequential(new PathfinderCommand(WayPointChooser.getPathToScale(autoChosen - 3, Robot.gameData)));
+//		}
 		
 		// Set lift height to switch or scale height
 		// int switchHeight = ??;

@@ -24,6 +24,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,21 +39,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends IterativeRobot {
+	public static OI m_oi;
+	
 	public static DriveSubsystem driveSubsystem;
 	public static LiftSubsystem liftSubsystem;
 	public static ClawSubsystem clawSubsystem;
 	public static LiftActuatorSubsystem liftActuatorSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
-	public static OI m_oi;
 	public static GearShiftSubsystem gearShiftSubsystem;
 	public static ClimberSubsystem climberSubsystem;
 
+	public static String gameData;
+//	public static String ourSwitchAssignment;
+//	public static String ourScaleAssignment;
+//	public static String oppositionSwitchAssignment;
+
 	Thread m_visionThread;
 	Command m_autonomousCommand;
-
 	Command driveCommand;
-	SendableChooser<Command> autoChooser = new SendableChooser<>();
-	SendableChooser<Command> positionChooser = new SendableChooser<>();
+	
+	SendableChooser<Command> autonomousChooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -61,28 +67,30 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
+		m_oi = new OI();
 		driveSubsystem = new DriveSubsystem();
 		liftSubsystem = new LiftSubsystem();
 		clawSubsystem = new ClawSubsystem();
 		intakeSubsystem = new IntakeSubsystem();
 		liftActuatorSubsystem =  new LiftActuatorSubsystem();
-		m_oi = new OI();
 		gearShiftSubsystem = new GearShiftSubsystem();
 		climberSubsystem = new ClimberSubsystem();
 		liftActuatorSubsystem.stateFalse();
-		
 		
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
 		
 		// Activates the lift actuator
-		//Robot.liftActuatorSubsystem.stateTrue();
+		//Robot.liftActuatorSubsystem.stateTrue(); // now in autonomous
 		
-		
-		// Autonomous Versions
-		positionChooser.addDefault("Position 1", new AutonomousCommandGroup());
-		
-		SmartDashboard.putData("Position Selection for Autonomous", positionChooser);
+		// Autonomous Options
+		autonomousChooser.addDefault("Station 1 to Switch", new AutonomousCommandGroup(1));
+		autonomousChooser.addObject("Station 2 to Switch", new AutonomousCommandGroup(2));
+		autonomousChooser.addObject("Station 3 to Switch", new AutonomousCommandGroup(3));
+		autonomousChooser.addObject("Station 1 to Scale", new AutonomousCommandGroup(4));
+		autonomousChooser.addObject("Station 2 to Scale", new AutonomousCommandGroup(5));
+		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(6));
+		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
 		
 		m_visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
@@ -141,11 +149,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable chooser
-	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-	 * remove all of the chooser code and uncomment the getString code to get the
-	 * auto name from the text box below the Gyro
-	 *
-	 * <p>
+	 * code works with the Java SmartDashboard. I
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * t,he switch structure below with additional strings & commands.
@@ -153,11 +157,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		// checks which autonomous program is selected to run
-		m_autonomousCommand = positionChooser.getSelected();
+		m_autonomousCommand = autonomousChooser.getSelected();
 		
-		// TODO: getGameSpecificData to know the alliance's plate (switch/scale) assignments
+		// Switch & Scale field position assignments
+		gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
 
-		// schedule the autonomous command (example)
+		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
