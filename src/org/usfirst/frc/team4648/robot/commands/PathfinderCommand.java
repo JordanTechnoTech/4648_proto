@@ -5,6 +5,7 @@ import org.usfirst.frc.team4648.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
@@ -46,8 +47,15 @@ public class PathfinderCommand extends Command {
 		
 	    	double l = left.calculate(RobotMap.leftEncoder.get());
 	    	double r = right.calculate(RobotMap.rightEncoder.get());
+	    	
+	    	double gyro_heading = RobotMap.imu.getAngleZ();
+		double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
 	
-	    	Robot.driveSubsystem.tankDrive(l, r);
+		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
+		double turn = 0.8 * (-1.0/80.0) * angleDifference;
+	    			
+	
+	    	Robot.driveSubsystem.tankDrive(l+turn, r-turn);
 	    	log();
 	}
 
