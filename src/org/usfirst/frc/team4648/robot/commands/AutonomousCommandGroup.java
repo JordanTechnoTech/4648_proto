@@ -42,14 +42,13 @@ public class AutonomousCommandGroup extends CommandGroup {
 
 			// Set lift height to switch or scale height
 			// chosen based on program selection (1 = to switch, 2 = to scale)
-			if (autoChosen > 3) {
+			if (autoChosen == 2) {
 				// TODO: Given initial set to switch position, only setting to scale position
 				// may be needed
 				// addSequential(new SetLiftHeightCommand(Robot.liftSubsystem.switchHeight));
 				// }
-				// else {
-				// Move to scale height
-				addSequential(new SetLiftHeightCommand(Robot.liftSubsystem.scaleHeight)); // TODO: Limit Switch?
+				// else {mand(Robot.liftSubsystem.scaleHeight)); // TODO: Limit Switch?
+				addParallel(new AutoLiftCommand());
 			}
 
 			// Eject the cube
