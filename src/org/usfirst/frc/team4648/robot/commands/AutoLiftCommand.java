@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoLiftCommand extends Command {
 	
 	public static final double AUTO_OUTER_LIFT_SPEED = .10;
+	public static final double AUTO_INNER_LIFT_SPEED = .10;
 	public static final int MAX_OUTER_ENCODER_VALUE = 10;
 
 	public AutoLiftCommand() {
@@ -29,6 +30,7 @@ public class AutoLiftCommand extends Command {
 	@Override
 	protected void execute() {
 		RobotMap.outerLiftMotorController.set(AUTO_OUTER_LIFT_SPEED);
+		RobotMap.innerLiftMotorController.set(AUTO_INNER_LIFT_SPEED);
 	}
 
 	@Override
@@ -39,6 +41,7 @@ public class AutoLiftCommand extends Command {
 	@Override
 	protected void end() {
 		RobotMap.outerLiftMotorController.set(0.0);
+		RobotMap.innerLiftMotorController.set(0.0);
 		super.end();
 	}
 
