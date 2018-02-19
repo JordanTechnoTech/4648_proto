@@ -23,6 +23,9 @@ public class AutonomousCommandGroup extends CommandGroup {
 //		addSequential(new PathfinderCommand(trajectories.get(1)));
 //		addSequential(new PathfinderCommand(trajectories.get(2)));
 		
+		// Turn intake on to hold cube in space
+		//addSequential(new AutoIntakeOnCommand());
+		
 		// Set lift from starting position (back) to running position (upright)
 //		addSequential(new AutoLiftCommand()); 
 		

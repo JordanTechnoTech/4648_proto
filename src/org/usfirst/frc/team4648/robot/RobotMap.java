@@ -27,7 +27,7 @@ public class RobotMap {
 	
 	public static final double WHEELBASE_WIDTH = 6; //INCHES
 	public static final double WHEEL_DIAMETER = .62; //INCHES
-	public static final int ENCODER_TICKS_PER_REVOLUTION = 1440;
+	public static final int ENCODER_TICKS_PER_REVOLUTION = 3;
 	public static final int MOTION_PROFILE_MAX_VELOCITY = 0;
 	
 	// drive components

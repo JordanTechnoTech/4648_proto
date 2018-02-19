@@ -26,8 +26,8 @@ public class PathfinderCommand extends Command {
 		left.configureEncoder(RobotMap.leftEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION, RobotMap.WHEEL_DIAMETER);
 		right.configureEncoder(RobotMap.rightEncoder.get(), RobotMap.ENCODER_TICKS_PER_REVOLUTION, RobotMap.WHEEL_DIAMETER);
 		
-		left.configurePIDVA(0.9, 0, 0, 0.3, 0.08);
-		right.configurePIDVA(0.9, 0, 0, 0.3, 0.08);
+		left.configurePIDVA(0.5, 0, 0, 0.3, 0.08); 
+		right.configurePIDVA(0.5, 0, 0, 0.3, 0.08);
 	}
 	
 
