@@ -37,7 +37,8 @@ public class IntakeCommand extends Command {
 	@Override
 	protected void end() {
 		//if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 0) {
-			RobotMap.intakeWheels.set(0);
+			RobotMap.intakeWheelRight.set(0);
+			RobotMap.intakeWheelLeft.set(0);
 		//} else if (Robot.intakeSubsystem.PASSIVE_INTAKE_STATUS == 1) {
 		//	RobotMap.intakeWheels.set(Robot.intakeSubsystem.PASSIVE_INTAKE_SPEED);
 		//}

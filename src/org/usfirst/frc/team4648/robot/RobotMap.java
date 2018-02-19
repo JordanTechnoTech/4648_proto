@@ -61,9 +61,12 @@ public class RobotMap {
 	public static Solenoid clawActuate;
 
 	// Intake components
-	public static int intakeMotor = 1;
-	public static Spark intakeWheels;
+	public static int intakeMotorRight = 1;
+	public static Talon intakeWheelRight;
 	
+	public static int intakeMotorLeft = 6;
+	public static Talon intakeWheelLeft;
+
 	//climbing motor
 	public static int climbMotorPort = 5;
 	public static Spark climbMotorController;
@@ -110,7 +113,8 @@ public class RobotMap {
 		clawActuate = new Solenoid(clawActuateMotor);
 
 		// intake initialization
-		intakeWheels = new Spark(intakeMotor);
+		intakeWheelRight = new Talon(intakeMotorRight);
+		intakeWheelLeft = new Talon(intakeMotorLeft);
 		
 		//climber initialization
 		climbMotorController = new Spark(climbMotorPort);
