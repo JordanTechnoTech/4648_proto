@@ -25,6 +25,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 		
 		// Turn intake on to hold cube in space
 		//addSequential(new AutoIntakeOnCommand());
+		//wait one second before proceeding
 		
 		// Set lift from starting position (back) to running position (upright)
 //		addSequential(new AutoLiftCommand()); 
@@ -36,9 +37,6 @@ public class AutonomousCommandGroup extends CommandGroup {
 		// (3) GameSpecifcMessage sent at start for assigned switch and scale sides,
 		//     autonomous only care about near switch
 		addSequential(new PathfinderCommand(WayPointChooser.getSimpleTrajectory())); // returns a trajectory to follow
-		
-		// Follow trajectory path
-		//addSequential(new PathfinderCommand(WayPointChooser.followPath(autoTrajectory)));
 		
 		// Set lift height to switch or scale height
 		// int switchHeight = ??;
