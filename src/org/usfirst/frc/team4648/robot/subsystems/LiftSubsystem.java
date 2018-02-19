@@ -16,6 +16,16 @@ public class LiftSubsystem extends Subsystem {
 	public final int singleLiftState = 0;
 	public final int doubleLiftState = 1;
 	public int liftControlState = singleLiftState;
+	public double liftControlHeight = 0;
+	
+	public final double switchHeight = 0;  //TODO: Determine height, Limit Switch?
+	public final double scaleHeight = 0; //TODO: Determine height, Limit Switch?
+	
+	public LiftSubsystem() {
+		//TODO: Update with actual installed encoders - Possibly change to just limit switch
+		addChild("Inner Lift Encoder", RobotMap.innerLiftEncoder);
+		addChild("Outer Lift Encoder", RobotMap.outerLiftEncoder);
+	}
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -26,6 +36,12 @@ public class LiftSubsystem extends Subsystem {
 	public void setLiftState(int liftState)
 	{
 		liftControlState = liftState;
+	}
+	
+	public void setLiftHeight(double height)
+	{
+		// TODO: Need to set height based on encoders
+		liftControlHeight = height;
 	}
 	
 	public void liftSystemControl(double liftSpeed) {
@@ -53,8 +69,8 @@ public class LiftSubsystem extends Subsystem {
 	public void log() {
 		SmartDashboard.putNumber("liftspeed", innerLiftMotorController.get());
 		SmartDashboard.putNumber("lift Control Stat", liftControlState);
-		SmartDashboard.putNumber("Inner Encoder", RobotMap.innerEncoder.get());
-		SmartDashboard.putNumber("Outer Encoder", RobotMap.outerEncoder.get());
+		SmartDashboard.putNumber("Inner Encoder", RobotMap.innerLiftEncoder.get());
+		SmartDashboard.putNumber("Outer Encoder", RobotMap.outerLiftEncoder.get());
 		
 		}
 //	public void outerLiftControl(double liftSpeed) {
