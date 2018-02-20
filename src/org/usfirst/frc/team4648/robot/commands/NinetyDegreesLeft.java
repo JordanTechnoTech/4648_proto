@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class NinetyDegreesLeft extends Command {
-	public double timeout = 4;
-	public double D = 1;
 	public double I = .002;
 	public double P = .004;
 	public double integral, error, rotationSpeed = 0;
@@ -61,6 +59,6 @@ public class NinetyDegreesLeft extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (RobotMap.imu.getAngleZ() <= -90);
+		return (RobotMap.imu.getAngleZ() <= -89);
 	}
 }

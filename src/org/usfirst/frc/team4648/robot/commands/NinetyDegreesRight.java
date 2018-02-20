@@ -17,19 +17,19 @@ public class NinetyDegreesRight extends Command {
 	public double setpoint = 90;
 
     public NinetyDegreesRight() {
-    	
+
         super();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.driveSubsystem);
-        
-        
+
+
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {	
+    protected void initialize() {
     }
-    
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	error = setpoint - RobotMap.imu.getAngleZ();
@@ -38,8 +38,8 @@ public class NinetyDegreesRight extends Command {
    Robot.driveSubsystem.arcadeDrive(0, rotationSpeed);
 //    RobotMap.leftDriveMotorController.set(rotationSpeed);
 //    RobotMap.rightDriveMotorController.set(rotationSpeed);
-    	
-   
+
+
     }
 
     // Called once after timeout
@@ -55,6 +55,6 @@ public class NinetyDegreesRight extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return RobotMap.imu.getAngleZ() >=90;
+		return RobotMap.imu.getAngleZ() >=89;
 	}
 }

@@ -84,13 +84,13 @@ public class Robot extends IterativeRobot {
 		//Robot.liftActuatorSubsystem.stateTrue(); // now in autonomous
 		
 		// Autonomous Options
-		autonomousChooser.addDefault("Station 1 to Switch", new AutonomousCommandGroup(1));
-		autonomousChooser.addObject("Station 2 to Switch", new AutonomousCommandGroup(2));
-		autonomousChooser.addObject("Station 3 to Switch", new AutonomousCommandGroup(3));
-		autonomousChooser.addObject("Station 1 to Scale", new AutonomousCommandGroup(4));
-		autonomousChooser.addObject("Station 2 to Scale", new AutonomousCommandGroup(5));
-		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(6));
-		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
+//		autonomousChooser.addDefault("Station 1 to Switch", new AutonomousCommandGroup(1));
+//		autonomousChooser.addObject("Station 2 to Switch", new AutonomousCommandGroup(2));
+//		autonomousChooser.addObject("Station 3 to Switch", new AutonomousCommandGroup(3));
+//		autonomousChooser.addObject("Station 1 to Scale", new AutonomousCommandGroup(4));
+//		autonomousChooser.addObject("Station 2 to Scale", new AutonomousCommandGroup(5));
+//		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(6));
+//		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
 		
 		m_visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
@@ -138,7 +138,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override
@@ -156,12 +155,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		//TODO get this from the dashboard
+		int entryPoint = 1;
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		int retries = 100;
+		while (gameData.length() < 2 && retries > 0) {
+			retries--;
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException ie) {
+				// Just ignore the interrupted exception
+			}
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+		}
+		if (gameData.length()>0) {
+			char switchSide = gameData.charAt(0);
+			char scaleSide = gameData.charAt(1);
+			m_autonomousCommand = new AutonomousCommandGroup(entryPoint,scaleSide,switchSide);
+		}
+
 		// checks which autonomous program is selected to run
-		m_autonomousCommand = autonomousChooser.getSelected();
-		
-		// Switch & Scale field position assignments
-	//	gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
-		
+		//m_autonomousCommand = autonomousChooser.getSelected();
+
 		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
