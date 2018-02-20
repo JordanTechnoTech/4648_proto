@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		m_oi = new OI();
+		gameData = new String("RRR");
 		driveSubsystem = new DriveSubsystem();
 		liftSubsystem = new LiftSubsystem();
 		clawSubsystem = new ClawSubsystem();
@@ -76,7 +76,7 @@ public class Robot extends IterativeRobot {
 		gearShiftSubsystem = new GearShiftSubsystem();
 		climberSubsystem = new ClimberSubsystem();
 		liftActuatorSubsystem.stateFalse();
-		
+		m_oi = new OI();
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
 		
@@ -160,8 +160,8 @@ public class Robot extends IterativeRobot {
 		m_autonomousCommand = autonomousChooser.getSelected();
 		
 		// Switch & Scale field position assignments
-		gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
-
+	//	gameData = new String(DriverStation.getInstance().getGameSpecificMessage());
+		
 		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -213,7 +213,8 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem.log();
 		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
 		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
-		SmartDashboard.getString(gameData, null);
+		SmartDashboard.putNumber("liftencoder", RobotMap.outerLiftEncoder.get());
+	//	SmartDashboard.getString(gameData, null);
 		
 	}
 }

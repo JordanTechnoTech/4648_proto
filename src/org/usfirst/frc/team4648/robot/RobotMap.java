@@ -48,8 +48,8 @@ public class RobotMap {
 	public static int outerLiftMotor = 4;
 	public static Spark outerLiftMotorController;
 	public static Spark innerLiftMotorController;
-	public static int outerEncoder1 = 6;
-	public static int outerEncoder2 = 7;
+	public static int outerEncoder1 = 4;
+	public static int outerEncoder2 = 5;
 	//TODO: Update with actual installed encoders
 	public static Encoder outerLiftEncoder;
 
@@ -119,8 +119,7 @@ public class RobotMap {
 		imu = new ADIS16448_IMU();
 		
 		//Sonar Initialization
-		leftSonar = new AnalogInput(0);
-		rightSonar = new AnalogInput(1);
+
 		
 		//Lift actuator
 		rightLiftActuate = new Solenoid(rightActuateChannel);

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4648.robot;
 
+import org.usfirst.frc.team4648.robot.commands.ResetGyroAndEncoders;
+import org.usfirst.frc.team4648.robot.commands.RightStart_Switch;
 import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -50,7 +52,8 @@ public class OI {
 		// Start the command when the button is released and let it run the command
 		// until it is finished as determined by it's isFinished method.
 		bButton.whenPressed(new SetLiftStateCommand(0));
-		xButton.whenPressed(new SetLiftStateCommand(1));
+		//xButton.whenPressed(new SetLiftStateCommand(1));
+		xButton.whenPressed(new ResetGyroAndEncoders());
 	}
 
 	public double getArcardeSpeed() { // DriveCommand

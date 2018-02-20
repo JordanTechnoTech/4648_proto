@@ -29,8 +29,8 @@ public class AutoLiftCommand extends Command {
 
 	@Override
 	protected void execute() {
-		RobotMap.outerLiftMotorController.set(AUTO_OUTER_LIFT_SPEED);
-		RobotMap.innerLiftMotorController.set(AUTO_INNER_LIFT_SPEED);
+		//RobotMap.outerLiftMotorController.set(AUTO_OUTER_LIFT_SPEED);
+		//RobotMap.innerLiftMotorController.set(AUTO_INNER_LIFT_SPEED);
 	}
 
 	@Override

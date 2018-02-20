@@ -13,7 +13,7 @@ public class SetLiftHeightCommand extends Command {
 		m_liftHeight = liftHeight;
 		requires(Robot.liftSubsystem);
 	}
-	
+
 	@Override
 	protected void initialize() {
 		super.initialize();
