@@ -24,12 +24,11 @@ public class AutoLiftAcuatorCommand extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-
 		super.end();
 	}
 

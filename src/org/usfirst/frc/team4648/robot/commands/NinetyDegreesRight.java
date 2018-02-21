@@ -12,7 +12,7 @@ public class NinetyDegreesRight extends Command {
 	public double timeout = 4;
 	public double D = 1;
 	public double I = .002;
-	public double P = .004;
+	public double P = .006;
 	public double integral, error, rotationSpeed = 0;
 	public double setpoint = 90;
 

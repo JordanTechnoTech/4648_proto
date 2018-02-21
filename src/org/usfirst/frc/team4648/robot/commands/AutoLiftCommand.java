@@ -35,7 +35,8 @@ public class AutoLiftCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return RobotMap.outerLiftEncoder.get() >= MAX_OUTER_ENCODER_VALUE;
+		//return RobotMap.outerLiftEncoder.get() >= MAX_OUTER_ENCODER_VALUE;
+		return true;
 	}
 
 	@Override

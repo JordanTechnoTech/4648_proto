@@ -26,6 +26,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap {
 	
 	// drive components
+	public static String gameData = "RRR";
+	public static String switchGoal = "RRR";
+	public static String scaleGoal = "RRR";
+	
 	public static int rightDriveMotor = 0;
 	public static int leftDriveMotor = 3;
 
@@ -86,6 +90,7 @@ public class RobotMap {
 	// IMU(Inertial Measurement Unit) component contains a three axis gyroscope,
 	// three axis accelerometer, three axis magnetometer, and a barometer
 	public static ADIS16448_IMU imu;
+	
 
 	public static void init() {
 		// drive initialization

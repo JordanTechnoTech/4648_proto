@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraight extends Command {
+public class AutoTurn90LeftUsingEncoders extends Command {
 
 private int encoderTicks;
 private double error, leftSpeed, rightSpeed;
 private double kSetSpeed = .6;
 
 
-    public DriveStraight(int encoderTicks) { 
+    public AutoTurn90LeftUsingEncoders(int encoderTicks) { 
     	super();
     	this.encoderTicks = encoderTicks;
       
@@ -35,12 +35,10 @@ private double kSetSpeed = .6;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	this.error = RobotMap.imu.getAccelZ() / 20;
-    	leftSpeed = (kSetSpeed - error);
-    	rightSpeed =  -(kSetSpeed + error);
+   
     	
-    	RobotMap.leftDriveMotorController.set(leftSpeed);
-    	RobotMap.rightDriveMotorController.set(rightSpeed);
+    	RobotMap.leftDriveMotorController.set(kSetSpeed);
+    	RobotMap.rightDriveMotorController.set(kSetSpeed);  //right motor turns backwards
     	
 //    RobotMap.leftDriveMotorController.set(rotationSpeed);
 //    RobotMap.rightDriveMotorController.set(rotationSpeed);

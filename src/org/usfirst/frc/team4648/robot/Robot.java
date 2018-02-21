@@ -11,7 +11,13 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team4648.robot.commands.AutonomousCommandGroup;
+import org.usfirst.frc.team4648.robot.commands.StationTwoToSwitch;
+import org.usfirst.frc.team4648.robot.commands.AutoCrossLine;
+import org.usfirst.frc.team4648.robot.commands.StationOneToScale;
+import org.usfirst.frc.team4648.robot.commands.StationOneToSwitch;
+import org.usfirst.frc.team4648.robot.commands.StationThreeToScale;
+import org.usfirst.frc.team4648.robot.commands.StationThreeToSwitch;
+import org.usfirst.frc.team4648.robot.commands.DummyChooserCommand;
 import org.usfirst.frc.team4648.robot.subsystems.ClawSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team4648.robot.subsystems.DriveSubsystem;
@@ -40,7 +46,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	public static OI m_oi;
-	
+
 	public static DriveSubsystem driveSubsystem;
 	public static LiftSubsystem liftSubsystem;
 	public static ClawSubsystem clawSubsystem;
@@ -50,48 +56,50 @@ public class Robot extends IterativeRobot {
 	public static ClimberSubsystem climberSubsystem;
 
 	public static String gameData;
-//	public static String ourSwitchAssignment;
-//	public static String ourScaleAssignment;
-//	public static String oppositionSwitchAssignment;
+	// public static String ourSwitchAssignment;
+	// public static String ourScaleAssignment;
+	// public static String oppositionSwitchAssignment;
 
 	Thread m_visionThread;
 	Command m_autonomousCommand;
 	Command driveCommand;
-	
+
 	SendableChooser<Command> autonomousChooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		gameData = new String("RRR");
 		driveSubsystem = new DriveSubsystem();
 		liftSubsystem = new LiftSubsystem();
 		clawSubsystem = new ClawSubsystem();
 		intakeSubsystem = new IntakeSubsystem();
-		liftActuatorSubsystem =  new LiftActuatorSubsystem();
+		liftActuatorSubsystem = new LiftActuatorSubsystem();
 		gearShiftSubsystem = new GearShiftSubsystem();
 		climberSubsystem = new ClimberSubsystem();
-		liftActuatorSubsystem.stateFalse();
+
 		m_oi = new OI();
+
+		// Init of subsystems
+		liftActuatorSubsystem.stateFalse();
 		// puts the robot into first gear upon startup
 		Robot.gearShiftSubsystem.gearShiftOne();
-		
+
 		// Activates the lift actuator
-		//Robot.liftActuatorSubsystem.stateTrue(); // now in autonomous
-		
+		// Robot.liftActuatorSubsystem.stateTrue(); // now in autonomous
+
 		// Autonomous Options
-//		autonomousChooser.addDefault("Station 1 to Switch", new AutonomousCommandGroup(1));
-//		autonomousChooser.addObject("Station 2 to Switch", new AutonomousCommandGroup(2));
-//		autonomousChooser.addObject("Station 3 to Switch", new AutonomousCommandGroup(3));
-//		autonomousChooser.addObject("Station 1 to Scale", new AutonomousCommandGroup(4));
-//		autonomousChooser.addObject("Station 2 to Scale", new AutonomousCommandGroup(5));
-//		autonomousChooser.addObject("Station 3 to Scale", new AutonomousCommandGroup(6));
-//		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
-		
+		autonomousChooser.addDefault("Cross Auto Line", new DummyChooserCommand(0, "LINE"));
+		autonomousChooser.addObject("Station 1 to Switch", new DummyChooserCommand(1, "SWITCH"));
+		autonomousChooser.addObject("Station 1 to Scale", new DummyChooserCommand(1, "SCALE"));
+		autonomousChooser.addObject("Station 2 to Switch", new DummyChooserCommand(2, "SWITCH"));
+		autonomousChooser.addObject("Station 3 to Switch", new DummyChooserCommand(3, "SWITCH"));
+		autonomousChooser.addObject("Station 3 to Scale", new DummyChooserCommand(3, "SCALE"));
+		SmartDashboard.putData("Autonomous Mode Chooser", autonomousChooser);
+
 		m_visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -113,7 +121,7 @@ public class Robot extends IterativeRobot {
 			// deploying.
 			while (!Thread.interrupted()) {
 				// Tell the CvSink to grab a frame from the camera and put it
-				// in the source mat.  If there is an error notify the output.
+				// in the source mat. If there is an error notify the output.
 				if (cvSink.grabFrame(mat) == 0) {
 					// Send the output the error.
 					outputStream.notifyError(cvSink.getError());
@@ -121,8 +129,7 @@ public class Robot extends IterativeRobot {
 					continue;
 				}
 				// Put a rectangle on the image
-				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-						new Scalar(255, 255, 255), 5);
+				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
 				// Give the output stream a new image to display
 				outputStream.putFrame(mat);
 			}
@@ -148,34 +155,51 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable chooser
-	 * code works with the Java SmartDashboard. I
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons to
-	 * t,he switch structure below with additional strings & commands.
+	 * code works with the Java SmartDashboard. I You can add additional auto modes
+	 * by adding additional commands to the chooser code above (like the commented
+	 * example) or additional comparisons to t,he switch structure below with
+	 * additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
-		//TODO get this from the dashboard
-		int entryPoint = 1;
+		// checks which autonomous program is selected to run
+
+		DummyChooserCommand selectedCommand = (DummyChooserCommand) autonomousChooser.getSelected();
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null) {
+			gameData = "";
+		}
 		int retries = 100;
 		while (gameData.length() < 2 && retries > 0) {
 			retries--;
 			try {
 				Thread.sleep(5);
-			} catch (InterruptedException ie) {
-				// Just ignore the interrupted exception
+			} catch (Exception e) {
+				// Just ignore interrupted exception
 			}
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
-		if (gameData.length()>0) {
-			char switchSide = gameData.charAt(0);
-			char scaleSide = gameData.charAt(1);
-			m_autonomousCommand = new AutonomousCommandGroup(entryPoint,scaleSide,switchSide);
+		if (gameData.length() >= 2) {
+			RobotMap.gameData = gameData;
+			RobotMap.switchGoal = new String(gameData.substring(0, 0));
+			RobotMap.scaleGoal = new String(gameData.substring(1, 1));
+			// Switch & Scale field position assignments
+			if (selectedCommand.station == 1 && selectedCommand.destination == "SCALE") {
+				m_autonomousCommand = new StationOneToScale();
+			} else if (selectedCommand.station == 1 && selectedCommand.destination == "SWITCH") {
+				m_autonomousCommand = new StationOneToSwitch();
+			} else if (selectedCommand.station == 2 && selectedCommand.destination == "SWITCH") {
+				m_autonomousCommand = new StationTwoToSwitch();
+			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SWITCH") {
+				m_autonomousCommand = new StationThreeToSwitch();
+			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SCALE") {
+				m_autonomousCommand = new StationThreeToScale();
+			} else {
+				m_autonomousCommand = new AutoCrossLine();
+			}
+		} else {
+			m_autonomousCommand = new AutoCrossLine();
 		}
-
-		// checks which autonomous program is selected to run
-		//m_autonomousCommand = autonomousChooser.getSelected();
 
 		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
@@ -189,8 +213,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		//RobotMap.leftLiftActuate.set(true);
-		//RobotMap.rightLiftActuate.set(true);
 		log();
 	}
 
@@ -229,7 +251,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
 		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
 		SmartDashboard.putNumber("liftencoder", RobotMap.outerLiftEncoder.get());
-	//	SmartDashboard.getString(gameData, null);
-		
+		// SmartDashboard.getString("gameData", gameData);
+
 	}
 }

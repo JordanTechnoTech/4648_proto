@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class NinetyDegreesLeft extends Command {
 	public double I = .002;
-	public double P = .004;
+	public double P = .006;
 	public double integral, error, rotationSpeed = 0;
 	public double setpoint = -90;
 
