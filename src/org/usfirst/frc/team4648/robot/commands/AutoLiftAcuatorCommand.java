@@ -19,6 +19,7 @@ public class AutoLiftAcuatorCommand extends Command {
 	@Override
 	protected void execute() {
 		Robot.liftActuatorSubsystem.stateTrue();
+		
 	}
 
 	@Override

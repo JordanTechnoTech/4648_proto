@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		liftActuatorSubsystem = new LiftActuatorSubsystem();
 		gearShiftSubsystem = new GearShiftSubsystem();
 		climberSubsystem = new ClimberSubsystem();
-
+		RobotMap.imu.reset();
 		m_oi = new OI();
 
 		// Init of subsystems
@@ -180,9 +180,11 @@ public class Robot extends IterativeRobot {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
 		if (gameData.length() >= 2) {
+			SmartDashboard.putString("Selector Is Working", " ");
+			
 			RobotMap.gameData = gameData;
-			RobotMap.switchGoal = new String(gameData.substring(0, 0));
-			RobotMap.scaleGoal = new String(gameData.substring(1, 1));
+			RobotMap.switchGoal = new String(gameData.substring(0, 1));
+			RobotMap.scaleGoal = new String(gameData.substring(1, 2));
 			// Switch & Scale field position assignments
 			if (selectedCommand.station == 1 && selectedCommand.destination == "SCALE") {
 				m_autonomousCommand = new StationOneToScale();
@@ -203,9 +205,16 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
+			SmartDashboard.putString("auto selector command", m_autonomousCommand.getClass().getName());
+			SmartDashboard.putString("gamedata", gameData);
+			SmartDashboard.putString("switch goal", "#"+RobotMap.switchGoal+ "#");
 			m_autonomousCommand.start();
 		}
+		else { 
+			SmartDashboard.putString("Did not recieve auto", " ");
+		}
 	}
+	
 
 	/**
 	 * This function is called periodically during autonomous.
@@ -213,6 +222,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
 		log();
 	}
 
@@ -250,8 +260,13 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem.log();
 		SmartDashboard.putNumber("climber motor", RobotMap.climbMotorController.get());
 		SmartDashboard.putNumber("Climber controller input", Robot.m_oi.controller1.getPOV());
-		SmartDashboard.putNumber("liftencoder", RobotMap.outerLiftEncoder.get());
-		// SmartDashboard.getString("gameData", gameData);
+		SmartDashboard.putNumber("lift encoder", RobotMap.outerLiftEncoder.get());
+		SmartDashboard.putNumber("outer Lift Throttle", RobotMap.outerLiftMotorController.get());
+		SmartDashboard.putNumber("turn", RobotMap.leftDriveMotorController.get());
+		SmartDashboard.putNumber("Gyro-Z", RobotMap.imu.getAngleZ());
+		SmartDashboard.putNumber("Angle", RobotMap.imu.getAngle());
 
+		
+		
 	}
 }

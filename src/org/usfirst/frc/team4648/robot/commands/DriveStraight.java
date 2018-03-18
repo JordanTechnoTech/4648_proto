@@ -39,8 +39,8 @@ private double kSetSpeed = .6;
     	leftSpeed = (kSetSpeed - error);
     	rightSpeed =  -(kSetSpeed + error);
     	
-    	RobotMap.leftDriveMotorController.set(leftSpeed);
-    	RobotMap.rightDriveMotorController.set(rightSpeed);
+    	RobotMap.leftDriveMotorController.set(kSetSpeed);
+    	RobotMap.rightDriveMotorController.set(-kSetSpeed);
     	
 //    RobotMap.leftDriveMotorController.set(rotationSpeed);
 //    RobotMap.rightDriveMotorController.set(rotationSpeed);

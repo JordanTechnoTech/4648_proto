@@ -14,9 +14,13 @@ public class NinetyDegreesRight extends Command {
 	public double I = .002;
 	public double P = .006;
 	public double integral, error, rotationSpeed = 0;
+	public double startPoint;
 	public double setpoint = 90;
 
+	
     public NinetyDegreesRight() {
+    	
+    	
 
         super();
         // Use requires() here to declare subsystem dependencies
@@ -26,18 +30,25 @@ public class NinetyDegreesRight extends Command {
 
     }
 
-    // Called just before this Command runs the first time
+    @Override
+	public synchronized void start() {
+		// TODO Auto-generated method stub
+		super.start();
+		
+	}
+
+	// Called just before this Command runs the first time
     protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	error = setpoint - RobotMap.imu.getAngleZ();
-    	rotationSpeed = P * error + I * integral;
+    	rotationSpeed =  Math.min(.5, P * error + I * integral);
     	integral = integral + error * .02;
-   Robot.driveSubsystem.arcadeDrive(0, rotationSpeed);
-//    RobotMap.leftDriveMotorController.set(rotationSpeed);
-//    RobotMap.rightDriveMotorController.set(rotationSpeed);
+
+	RobotMap.leftDriveMotorController.set(.3);
+	RobotMap.rightDriveMotorController.set(.3);
 
 
     }
@@ -55,6 +66,6 @@ public class NinetyDegreesRight extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return RobotMap.imu.getAngleZ() >=89;
+		return (RobotMap.imu.getAngleZ() - startPoint) >=80;
 	}
 }

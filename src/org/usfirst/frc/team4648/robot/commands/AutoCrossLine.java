@@ -14,6 +14,7 @@ public class AutoCrossLine extends CommandGroup {
 		addSequential(new AutoIntakeCommand(1, .25, true));
 		addSequential(new AutoLiftAcuatorCommand());
 		addSequential(new DriveStraight(596));
+			addParallel( new AutoLiftToLimitSwitch());
 
 	}
 

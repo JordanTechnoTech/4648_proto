@@ -17,6 +17,7 @@ public class StationTwoToSwitch extends CommandGroup {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(280));
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new DriveStraight(521));
 			addSequential(new NinetyDegreesRight());
@@ -28,6 +29,7 @@ public class StationTwoToSwitch extends CommandGroup {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(596));
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
 		}
 	}

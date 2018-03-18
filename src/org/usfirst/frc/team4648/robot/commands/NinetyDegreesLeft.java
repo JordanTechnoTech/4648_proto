@@ -26,8 +26,9 @@ public class NinetyDegreesLeft extends Command {
 	@Override
 	public synchronized void start() {
 		// TODO Auto-generated method stub
-		super.start();
 		RobotMap.imu.reset();
+		super.start();
+		
 	}
 
 	// Called just before this Command runs the first time
@@ -38,11 +39,11 @@ public class NinetyDegreesLeft extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		error = setpoint - RobotMap.imu.getAngleZ();
-		rotationSpeed = P * error + I * integral;
+		rotationSpeed =  Math.min(.5, P * error + I * integral);
 		integral = integral + error * .02;
-		Robot.driveSubsystem.arcadeDrive(0, rotationSpeed);
-		// RobotMap.leftDriveMotorController.set(rotationSpeed);
-		// RobotMap.rightDriveMotorController.set(rotationSpeed);
+		//Robot.driveSubsystem.arcadeDrive(0, -.3);
+		RobotMap.leftDriveMotorController.set(-.3);
+		RobotMap.rightDriveMotorController.set(-.3);
 
 	}
 
@@ -59,6 +60,6 @@ public class NinetyDegreesLeft extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (RobotMap.imu.getAngleZ() <= -89);
+		return (RobotMap.imu.getAngleZ() <= -80);
 	}
 }

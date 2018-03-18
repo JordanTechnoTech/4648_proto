@@ -17,12 +17,14 @@ public class StationThreeToSwitch extends CommandGroup {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(878));
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
 		} else if (RobotMap.switchGoal == "L") {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1340));
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new DriveStraight(948));
 			addSequential(new NinetyDegreesLeft());

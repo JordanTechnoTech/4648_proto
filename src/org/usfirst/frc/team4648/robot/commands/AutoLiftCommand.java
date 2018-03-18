@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoLiftCommand extends Command {
 	
-	public static final double AUTO_OUTER_LIFT_SPEED = .10;
-	public static final double AUTO_INNER_LIFT_SPEED = .10;
-	public static final int MAX_OUTER_ENCODER_VALUE = 10;
+	public static double AUTO_OUTER_LIFT_SPEED = .10;
+	public static final int MAX_OUTER_ENCODER_VALUE = 500;
+	public static double MAX_OUTER_LIFT_SPEED = .5;
 
 	public AutoLiftCommand() {
 		requires(Robot.liftSubsystem);
@@ -29,21 +29,23 @@ public class AutoLiftCommand extends Command {
 
 	@Override
 	protected void execute() {
-		//RobotMap.outerLiftMotorController.set(AUTO_OUTER_LIFT_SPEED);
-		//RobotMap.innerLiftMotorController.set(AUTO_INNER_LIFT_SPEED);
+		
+		AUTO_OUTER_LIFT_SPEED = Math.min(MAX_OUTER_LIFT_SPEED, (MAX_OUTER_ENCODER_VALUE - RobotMap.outerLiftEncoder.get()  ) * .005);
+		RobotMap.outerLiftMotorController.set(-AUTO_OUTER_LIFT_SPEED);
+
 	}
 
 	@Override
 	protected boolean isFinished() {
 		//return RobotMap.outerLiftEncoder.get() >= MAX_OUTER_ENCODER_VALUE;
-		return true;
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		RobotMap.outerLiftMotorController.set(0.0);
-		RobotMap.innerLiftMotorController.set(0.0);
+		
 		super.end();
+		RobotMap.outerLiftMotorController.set(-.3);
 	}
 
 }
