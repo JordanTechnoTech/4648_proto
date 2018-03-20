@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import org.usfirst.frc.team4648.robot.commands.AutoLiftCommand;
-import org.usfirst.frc.team4648.robot.commands.NinetyDegreesLeft;
-import org.usfirst.frc.team4648.robot.commands.ResetGyroAndEncoders;
 import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
 import org.usfirst.frc.team4648.robot.commands.StationOneToSwitch;
 
@@ -49,13 +46,12 @@ public class OI {
 
 		// Run the command while the button is being held down and interrupt it once
 		// the button is released.
-		//yButton.whileHeld(new PathfinderCommand(WayPointChooser.getStops(1, "").get(0)));
 
 		// Start the command when the button is released and let it run the command
 		// until it is finished as determined by it's isFinished method.
 		//bButton.whenPressed(new SetLiftStateCommand(0));
 		RobotMap.switchGoal = "L";
-		
+
 		bButton.whenPressed(new StationOneToSwitch());
 		xButton.whenPressed(new SetLiftStateCommand(1));
 		//xButton.whenPressed(new ResetGyroAndEncoders());
@@ -85,7 +81,7 @@ public class OI {
 	public boolean getClawToggle() { // ToggleClawCommand
 		return controller1.getAButton();
 	}
-	
+
 	public boolean getActuatorToggle() { // LiftActutatorCommand
 		return controller1.getStartButton();
 	}
@@ -101,7 +97,7 @@ public class OI {
 	public double climbStatus() { // for the climber
 		return controller1.getPOV();
 	}
-	
+
 	// public boolean getPassiveIntakeToggle() { //IntakeCommand // used on in
 	// Prototype
 	// return controller1.getBButton();

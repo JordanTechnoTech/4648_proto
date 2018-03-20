@@ -1,6 +1,7 @@
 /bin/
 /build/
 /dist/
+/out/
 .gradle
 
 ### IntelliJ IDEA ###

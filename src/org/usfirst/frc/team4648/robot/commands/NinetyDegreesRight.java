@@ -31,6 +31,7 @@ public class NinetyDegreesRight extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		initialZValue = RobotMap.imu.getAngleZ();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
