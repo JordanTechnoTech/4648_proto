@@ -4,6 +4,7 @@ import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -12,7 +13,8 @@ public class DriveStraight extends Command {
 
 private int encoderTicks;
 private double error, leftSpeed, rightSpeed;
-private double kSetSpeed = .6;
+private double kSetSpeed = .6; 
+private double intialEncoderValue = 0.0;
 
 
     public DriveStraight(int encoderTicks) { 
@@ -28,7 +30,7 @@ private double kSetSpeed = .6;
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	intialEncoderValue = RobotMap.leftEncoder.get();
     	
     }
     
@@ -41,6 +43,7 @@ private double kSetSpeed = .6;
     	
     	RobotMap.leftDriveMotorController.set(kSetSpeed);
     	RobotMap.rightDriveMotorController.set(-kSetSpeed);
+    	SmartDashboard.putString("AUTO_COMMAND", "Moving forward to "+encoderTicks+ " From:"+intialEncoderValue);
     	
 //    RobotMap.leftDriveMotorController.set(rotationSpeed);
 //    RobotMap.rightDriveMotorController.set(rotationSpeed);
@@ -60,15 +63,16 @@ private double kSetSpeed = .6;
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return RobotMap.leftEncoder.get() > encoderTicks;
+		return RobotMap.leftEncoder.get() > (intialEncoderValue+encoderTicks);
 	}
 
+	
 	@Override
 	public synchronized void start() {
 		// TODO Auto-generated method stub
 		super.start();
-    	RobotMap.leftEncoder.reset();
-    	RobotMap.imu.reset();
+		intialEncoderValue = RobotMap.leftEncoder.get();
+    	//RobotMap.imu.reset();
 
 	}
 }

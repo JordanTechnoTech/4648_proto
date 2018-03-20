@@ -21,8 +21,8 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void passiveIntake(boolean passiveToggle) { //only for Prototype robot
 		if (PASSIVE_INTAKE_STATUS == 0) {
-			intakeWheelRight.set(PASSIVE_INTAKE_SPEED);
-			intakeWheelLeft.set(PASSIVE_INTAKE_SPEED);
+			//intakeWheelRight.set(PASSIVE_INTAKE_SPEED);
+			//intakeWheelLeft.set(PASSIVE_INTAKE_SPEED);
 			PASSIVE_INTAKE_STATUS = 1;
 		} else if (PASSIVE_INTAKE_STATUS == 1) {
 			intakeWheelRight.set(0);

@@ -13,7 +13,7 @@ public class StationOneToScale extends CommandGroup {
 
 		// Turn intake on to hold cube in space
 
-		if (RobotMap.switchGoal.equals("L")) {
+		if (RobotMap.scaleGoal.equals("L")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1880));
@@ -21,7 +21,7 @@ public class StationOneToScale extends CommandGroup {
 			addSequential(new AutoLiftCommand());
 			addSequential(new NinetyDegreesRight());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
-		} else if (RobotMap.switchGoal.equals("R")) {
+		} else if (RobotMap.scaleGoal.equals("R")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1340));

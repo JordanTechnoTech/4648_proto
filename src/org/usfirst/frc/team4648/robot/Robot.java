@@ -144,7 +144,7 @@ public class Robot extends IterativeRobot {
 	 * robot is disabled.
 	 */
 	@Override
-	public void disabledInit() {
+	public void disabledInit() { RobotMap.leftEncoder.reset();
 	}
 
 	@Override

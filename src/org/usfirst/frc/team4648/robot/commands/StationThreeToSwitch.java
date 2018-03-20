@@ -13,14 +13,14 @@ public class StationThreeToSwitch extends CommandGroup {
 
 		// Turn intake on to hold cube in space
 
-		if (RobotMap.switchGoal == "R") {
+		if (RobotMap.switchGoal.equals("R")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(878));
 				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
-		} else if (RobotMap.switchGoal == "L") {
+		} else if (RobotMap.switchGoal.equals("L")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1340));
