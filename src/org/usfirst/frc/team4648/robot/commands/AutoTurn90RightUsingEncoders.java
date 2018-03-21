@@ -12,7 +12,7 @@ public class AutoTurn90RightUsingEncoders extends Command {
 
 private int encoderTicks;
 private double error, leftSpeed, rightSpeed;
-private double kSetSpeed = .6;
+private double kSetSpeed = .7;
 
 
     public AutoTurn90RightUsingEncoders(int encoderTicks) { 

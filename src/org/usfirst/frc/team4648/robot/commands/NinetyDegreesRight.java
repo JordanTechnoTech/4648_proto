@@ -36,8 +36,8 @@ public class NinetyDegreesRight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		RobotMap.leftDriveMotorController.set(.3);
-		RobotMap.rightDriveMotorController.set(.3);
+		RobotMap.leftDriveMotorController.set(.4);
+		RobotMap.rightDriveMotorController.set(.4);
 	}
 
 	// Called once after timeout

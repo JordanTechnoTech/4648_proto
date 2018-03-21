@@ -26,7 +26,7 @@ public class StationOneToSwitch extends CommandGroup {
 			addSequential(new DriveStraight(1340));
 				//addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new DriveStraight(948));
+			addSequential(new DriveStraight(500));  //TODO change back to 948
 			addSequential(new NinetyDegreesRight());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
 		}

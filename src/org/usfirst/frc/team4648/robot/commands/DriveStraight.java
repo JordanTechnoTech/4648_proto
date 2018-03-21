@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveStraight extends Command {
 
 	private int encoderTicks;
-	private double kSetSpeed = .6;
+	private double kSetSpeed = .5;
 	private double intialEncoderValue = 0.0;
 	private double initialHeading = 0.0;
 
@@ -41,11 +41,11 @@ public class DriveStraight extends Command {
 		leftPower = kSetSpeed - rotationPower;
 		rightPower = kSetSpeed + rotationPower;
 
-		RobotMap.leftDriveMotorController.set(leftPower);
-		RobotMap.rightDriveMotorController.set(-rightPower);
+		//RobotMap.leftDriveMotorController.set(leftPower);
+		//RobotMap.rightDriveMotorController.set(-rightPower);
 
-		// RobotMap.leftDriveMotorController.set(kSetSpeed);
-		// RobotMap.rightDriveMotorController.set(-kSetSpeed);
+		RobotMap.leftDriveMotorController.set(kSetSpeed);
+		RobotMap.rightDriveMotorController.set(-kSetSpeed*0.9);
 
 	}
 
