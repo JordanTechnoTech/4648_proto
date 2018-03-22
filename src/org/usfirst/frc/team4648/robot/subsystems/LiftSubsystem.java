@@ -42,15 +42,15 @@ public class LiftSubsystem extends Subsystem {
 	}
 
 	public void liftSystemControl(double liftSpeed) {
-		if (liftSpeed > 0) {
-			innerLiftMotorController.set(liftSpeed); // need encoder to control height
+		if (liftSpeed > 0) { // up
+			innerLiftMotorController.set(-liftSpeed); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
 				outerLiftMotorController.set(-liftSpeed); // need encoder to control height
 			} else {
 				outerLiftMotorController.set(0);
 			}
-		} else {
-			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+		} else { // down
+			innerLiftMotorController.set(-liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
 				outerLiftMotorController.set(-liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			} else {

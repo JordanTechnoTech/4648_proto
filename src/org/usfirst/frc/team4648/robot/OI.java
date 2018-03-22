@@ -49,11 +49,11 @@ public class OI {
 
 		// Start the command when the button is released and let it run the command
 		// until it is finished as determined by it's isFinished method.
-		//bButton.whenPressed(new SetLiftStateCommand(0));
-		RobotMap.switchGoal = "L";
-
-		bButton.whenPressed(new StationOneToSwitch());
+		bButton.whenPressed(new SetLiftStateCommand(0));
 		xButton.whenPressed(new SetLiftStateCommand(1));
+		
+		//RobotMap.switchGoal = "L";
+		//bButton.whenPressed(new StationOneToSwitch());	// BAD DURING DEMO!!!
 		//xButton.whenPressed(new ResetGyroAndEncoders());
 		//yButton.whenPressed(new NinetyDegreesLeft());
 	}

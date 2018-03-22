@@ -17,16 +17,16 @@ public class StationOneToSwitch extends CommandGroup {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(878));
-				//addParallel( new AutoLiftToLimitSwitch());
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesRight());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
 		} else if (RobotMap.switchGoal.equals("R")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1340));
-				//addParallel( new AutoLiftToLimitSwitch());
+				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new DriveStraight(500));  //TODO change back to 948
+			addSequential(new DriveStraight(948));
 			addSequential(new NinetyDegreesRight());
 			addSequential(new AutoIntakeCommand(2.0, .4, false));
 		}
