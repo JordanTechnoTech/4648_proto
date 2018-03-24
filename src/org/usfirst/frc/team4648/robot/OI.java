@@ -7,8 +7,8 @@
 
 package org.usfirst.frc.team4648.robot;
 
+
 import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
-import org.usfirst.frc.team4648.robot.commands.StationOneToSwitch;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;

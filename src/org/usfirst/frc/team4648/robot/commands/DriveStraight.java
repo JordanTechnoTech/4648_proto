@@ -13,7 +13,6 @@ public class DriveStraight extends Command {
 	private int encoderTicks;
 	private double kSetSpeed = .5;
 	private double intialEncoderValue = 0.0;
-	private double initialHeading = 0.0;
 
 	public DriveStraight(int encoderTicks) {
 		super();
@@ -28,25 +27,12 @@ public class DriveStraight extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		intialEncoderValue = RobotMap.leftEncoder.get();
-		initialHeading = RobotMap.imu.getAngleZ();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double Kp = 1d / 45d;// 0.025;
-		double leftPower;
-		double rightPower;
-		double angleOff = RobotMap.imu.getAngleZ() - initialHeading;
-		double rotationPower = -angleOff * Kp;
-		leftPower = kSetSpeed - rotationPower;
-		rightPower = kSetSpeed + rotationPower;
-
-		//RobotMap.leftDriveMotorController.set(leftPower);
-		//RobotMap.rightDriveMotorController.set(-rightPower);
-
 		RobotMap.leftDriveMotorController.set(kSetSpeed);
 		RobotMap.rightDriveMotorController.set(-kSetSpeed*0.9);
-
 	}
 
 	// Called once after timeout
