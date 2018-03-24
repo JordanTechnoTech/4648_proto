@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team4648.robot;
 
-import org.usfirst.frc.team4648.robot.commands.SetLiftStateCommand;
-import org.usfirst.frc.team4648.robot.commands.StationOneToSwitch;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -49,13 +47,6 @@ public class OI {
 
 		// Start the command when the button is released and let it run the command
 		// until it is finished as determined by it's isFinished method.
-		//bButton.whenPressed(new SetLiftStateCommand(0));
-		RobotMap.switchGoal = "L";
-
-		bButton.whenPressed(new StationOneToSwitch());
-		xButton.whenPressed(new SetLiftStateCommand(1));
-		//xButton.whenPressed(new ResetGyroAndEncoders());
-		//yButton.whenPressed(new NinetyDegreesLeft());
 	}
 
 	public double getArcardeSpeed() { // DriveCommand
