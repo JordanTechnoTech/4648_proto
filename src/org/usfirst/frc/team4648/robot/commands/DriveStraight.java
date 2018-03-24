@@ -32,7 +32,7 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		RobotMap.leftDriveMotorController.set(kSetSpeed);
-		RobotMap.rightDriveMotorController.set(-kSetSpeed*0.9);
+		RobotMap.rightDriveMotorController.set(-kSetSpeed * 0.93);
 	}
 
 	// Called once after timeout

@@ -25,15 +25,15 @@ public class AutoIntakeCommand extends TimedCommand {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (intake == false) {
-			Robot.intakeSubsystem.manualReject(speed);
+			Robot.intakeSubsystem.manualReject(-speed);
 		} else {
-			Robot.intakeSubsystem.manualIntake(speed);
+			Robot.intakeSubsystem.manualIntake(-speed);
 		}
 	}
 
 	// Called once after timeout
 	protected void end() {
-		Robot.intakeSubsystem.manualIntake(.25);
+		Robot.intakeSubsystem.manualIntake(-0.25);
 	}
 
 	// Called when another command which requires one or more of the same

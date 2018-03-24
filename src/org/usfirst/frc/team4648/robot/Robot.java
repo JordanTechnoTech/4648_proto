@@ -156,7 +156,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		// checks which autonomous program is selected to run
-
+		RobotMap.imu.reset();
+		
 		DummyChooserCommand selectedCommand = (DummyChooserCommand) autonomousChooser.getSelected();
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if (gameData == null) {

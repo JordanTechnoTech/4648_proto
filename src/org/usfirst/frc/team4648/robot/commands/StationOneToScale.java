@@ -20,19 +20,19 @@ public class StationOneToScale extends CommandGroup {
 				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new AutoLiftCommand());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, 0.6, false));
 		} else if (RobotMap.scaleGoal.equals("R")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
 			addSequential(new DriveStraight(1340));
 				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new DriveStraight(1490));
+			addSequential(new DriveStraight(1490)); 
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new DriveStraight(460));
 			addSequential(new AutoLiftCommand());
 			addSequential(new NinetyDegreesLeft());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, 0.6, false));
 		}
 	}
 }

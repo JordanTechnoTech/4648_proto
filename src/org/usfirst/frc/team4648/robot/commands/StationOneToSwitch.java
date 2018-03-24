@@ -19,7 +19,7 @@ public class StationOneToSwitch extends CommandGroup {
 			addSequential(new DriveStraight(878));
 				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, .6, false));
 		} else if (RobotMap.switchGoal.equals("R")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
@@ -28,7 +28,7 @@ public class StationOneToSwitch extends CommandGroup {
 			addSequential(new NinetyDegreesRight());
 			addSequential(new DriveStraight(948));
 			addSequential(new NinetyDegreesRight());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, .6, false));
 		}
 	}
 

@@ -19,7 +19,7 @@ public class LiftActuatorSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-	//	setDefaultCommand(new LiftActuatorCommand());
+		setDefaultCommand(new LiftActuatorCommand());
 	}
 
 	public void stateTrue() {

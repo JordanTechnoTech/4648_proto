@@ -20,7 +20,7 @@ public class StationThreeToScale extends CommandGroup {
 				addParallel( new AutoLiftToLimitSwitch());
 			addSequential(new AutoLiftCommand());
 			addSequential(new NinetyDegreesLeft());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, .6, false));
 		} else if (RobotMap.scaleGoal.equals("L")) {
 			addSequential(new AutoIntakeCommand(1, .25, true));
 			addSequential(new AutoLiftAcuatorCommand());
@@ -32,7 +32,7 @@ public class StationThreeToScale extends CommandGroup {
 			addSequential(new DriveStraight(460));
 			addSequential(new AutoLiftCommand());
 			addSequential(new NinetyDegreesRight());
-			addSequential(new AutoIntakeCommand(2.0, .4, false));
+			addSequential(new AutoIntakeCommand(2.0, .6, false));
 		}
 
 	}

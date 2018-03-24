@@ -52,6 +52,6 @@ public class NinetyDegreesLeft extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return (RobotMap.imu.getAngleZ() <= (initialZValue - 89.0));
+		return (RobotMap.imu.getAngleZ() <= (initialZValue - 79.0));
 	}
 }
