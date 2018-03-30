@@ -21,7 +21,7 @@ public class StationTwoToSwitch extends CommandGroup {
 			addSequential(new NinetyDegreesLeft());
 			addSequential(new DriveStraight(521));
 			addSequential(new NinetyDegreesRight());
-			addSequential(new DriveStraight(180));
+			addSequential(new DriveStraight(320));
 			addSequential(new AutoIntakeCommand(2.0, 0.6, false));
 		}
 

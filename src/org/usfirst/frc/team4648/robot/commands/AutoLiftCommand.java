@@ -31,7 +31,7 @@ public class AutoLiftCommand extends Command {
 	protected void execute() {
 		
 		AUTO_OUTER_LIFT_SPEED = Math.min(MAX_OUTER_LIFT_SPEED, (MAX_OUTER_ENCODER_VALUE - RobotMap.outerLiftEncoder.get()  ) * .005);
-		RobotMap.outerLiftMotorController.set(-AUTO_OUTER_LIFT_SPEED);
+		RobotMap.outerLiftMotorController.set(AUTO_OUTER_LIFT_SPEED);
 
 	}
 
@@ -45,7 +45,7 @@ public class AutoLiftCommand extends Command {
 	protected void end() {
 		
 		super.end();
-		RobotMap.outerLiftMotorController.set(-.3);
+		//RobotMap.outerLiftMotorController.set(-.3);
 	}
 
 }

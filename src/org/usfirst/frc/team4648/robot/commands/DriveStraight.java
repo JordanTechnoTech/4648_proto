@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveStraight extends Command {
 
 	private int encoderTicks;
-	private double kSetSpeed = .5;
+	private double kSetSpeed = .6;
 	private double intialEncoderValue = 0.0;
+	private double initialZValue = 0.0;
 
 	public DriveStraight(int encoderTicks) {
 		super();
@@ -27,12 +28,20 @@ public class DriveStraight extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		intialEncoderValue = RobotMap.leftEncoder.get();
+		initialZValue = RobotMap.imu.getAngleZ();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		double difference = initialZValue - RobotMap.imu.getAngleZ();
+		double adjustment = 0.0;
+		if(difference < -2) {//drifting left 
+			adjustment = 0.1;
+		} else if(difference > 2){//drifting right
+			adjustment = -0.1;
+		}
 		RobotMap.leftDriveMotorController.set(kSetSpeed);
-		RobotMap.rightDriveMotorController.set(-kSetSpeed * 0.93);
+		RobotMap.rightDriveMotorController.set(-kSetSpeed * (0.85 + adjustment));
 	}
 
 	// Called once after timeout

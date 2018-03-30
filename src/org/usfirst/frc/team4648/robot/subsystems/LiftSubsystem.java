@@ -42,17 +42,17 @@ public class LiftSubsystem extends Subsystem {
 	}
 
 	public void liftSystemControl(double liftSpeed) {
-		if (liftSpeed > 0) { // down
-			innerLiftMotorController.set(-liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+		if (liftSpeed < 0) { // up
+			innerLiftMotorController.set(liftSpeed); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
-				outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
+				outerLiftMotorController.set(liftSpeed); // need encoder to control height
 			} else {
 				outerLiftMotorController.set(0);
 			}
-		} else { // up
-			innerLiftMotorController.set(-liftSpeed); // need encoder to control height
+		} else { // down
+			innerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			if (liftControlState == doubleLiftState) {
-				outerLiftMotorController.set(liftSpeed); // need encoder to control height
+				outerLiftMotorController.set(liftSpeed * LOWER_SPEED_RATE); // need encoder to control height
 			} else {
 				outerLiftMotorController.set(0);
 			}
@@ -61,7 +61,8 @@ public class LiftSubsystem extends Subsystem {
 	}
 
 	public void log() {
-		SmartDashboard.putNumber("liftspeed", innerLiftMotorController.get());
+		SmartDashboard.putNumber("Inner liftspeed", innerLiftMotorController.get());
+		SmartDashboard.putNumber("Outer liftspeed", outerLiftMotorController.get());
 		SmartDashboard.putNumber("lift Control Stat", liftControlState);
 		SmartDashboard.putNumber("Outer Lift Encoder", RobotMap.outerLiftEncoder.get());
 

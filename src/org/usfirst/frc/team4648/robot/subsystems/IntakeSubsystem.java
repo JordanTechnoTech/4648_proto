@@ -18,13 +18,13 @@ public class IntakeSubsystem extends Subsystem {
 	}
 	
 	public void manualIntake(double IntakeSpeed) {
-		intakeWheelRight.set(-IntakeSpeed); // wires crossed in final robot, so inverse speed
-		intakeWheelLeft.set(-IntakeSpeed);
+		intakeWheelRight.set(IntakeSpeed); // wires crossed in final robot, so inverse speed
+		intakeWheelLeft.set(IntakeSpeed);
 	}
 	
 	public void manualReject(double IntakeOutputSpeed) {
-		intakeWheelRight.set(IntakeOutputSpeed);
-		intakeWheelLeft.set(IntakeOutputSpeed);
+		intakeWheelRight.set(-IntakeOutputSpeed);
+		intakeWheelLeft.set(-IntakeOutputSpeed);
 	}
 	
 	public void log() {

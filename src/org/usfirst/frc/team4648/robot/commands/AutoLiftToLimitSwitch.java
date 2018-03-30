@@ -22,7 +22,7 @@ public class AutoLiftToLimitSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.innerLiftMotorController.set(.4);
+    	RobotMap.innerLiftMotorController.set(-.4);
     }
 
     // Make this return true when this Command no longer needs to run execute()
