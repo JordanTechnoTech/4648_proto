@@ -4,6 +4,7 @@ import org.usfirst.frc.team4648.robot.Robot;
 import org.usfirst.frc.team4648.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -34,12 +35,19 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double difference = initialZValue - RobotMap.imu.getAngleZ();
+		//examples
+		// -  initalialZValue = 0 RioCurrentAngleZ = -4 ; in this case drifting to the left need less power to right 
+		//    adjustment = -.1; rightDriveMotorController would be .set(-kSetSpeed * .75)
+		// -  initalialZValue = 0 RioCurrentAngleZ = 4 ; in this case drifting to the right need more power to right 
+		//    adjustment = .1; rightDriveMotorController would be .set(-kSetSpeed * .95)
+
 		double adjustment = 0.0;
-		if(difference < -2) {//drifting left 
-			adjustment = 0.1;
-		} else if(difference > 2){//drifting right
+		if(difference < -1.0) {//drifting left 
 			adjustment = -0.1;
+		} else if(difference > 1.0){//drifting right
+			adjustment = 0.1;
 		}
+		SmartDashboard.putNumber("RIGHT ADJUSTMENT",adjustment);
 		RobotMap.leftDriveMotorController.set(kSetSpeed);
 		RobotMap.rightDriveMotorController.set(-kSetSpeed * (0.85 + adjustment));
 	}
