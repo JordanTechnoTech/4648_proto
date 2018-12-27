@@ -11,10 +11,10 @@ public class AutoCrossLine extends CommandGroup {
 
 		// Turn intake on to hold cube in space
 		
-		addSequential(new AutoIntakeCommand(1, .25, true));
-		addSequential(new AutoLiftAcuatorCommand());
+//		addSequential(new AutoIntakeCommand(1, .25, true));
+//		addSequential(new AutoLiftAcuatorCommand());
 		addSequential(new DriveStraight(596));
-			addParallel( new AutoLiftToLimitSwitch());
+//			addParallel( new AutoLiftToLimitSwitch());
 
 	}
 

@@ -15,6 +15,7 @@ public class DriveStraight extends Command {
 	private double kSetSpeed = .6;
 	private double intialEncoderValue = 0.0;
 	private double initialZValue = 0.0;
+	private long startTime;
 
 	public DriveStraight(int encoderTicks) {
 		super();
@@ -30,10 +31,32 @@ public class DriveStraight extends Command {
 	protected void initialize() {
 		intialEncoderValue = RobotMap.leftEncoder.get();
 		initialZValue = RobotMap.imu.getAngleZ();
+		startTime = System.currentTimeMillis();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		int seconds =  Math.max((int)(System.currentTimeMillis() - startTime)/1000,1);
+		double percentOfFull = 0;
+		if(seconds <= 1) {
+			percentOfFull =.10;
+		} else if(seconds <=2 ) {
+			percentOfFull =.20;
+		} else if(seconds <=3 ) {
+			percentOfFull =.30;
+		} else if(seconds <=4 ) {
+			percentOfFull =.40;
+		}else if(seconds <=5 ) {
+			percentOfFull =.50;
+		}else if(seconds <=7 ) {
+			percentOfFull =.60;
+		}else if(seconds <=8 ) {
+			percentOfFull =.70;
+		}else if(seconds <=9 ) {
+			percentOfFull =.80;
+		} else {
+			percentOfFull = 1;
+		}
 		double difference = initialZValue - RobotMap.imu.getAngleZ();
 		//examples
 		// -  initalialZValue = 0 RioCurrentAngleZ = -4 ; in this case drifting to the left need less power to right 
@@ -41,15 +64,16 @@ public class DriveStraight extends Command {
 		// -  initalialZValue = 0 RioCurrentAngleZ = 4 ; in this case drifting to the right need more power to right 
 		//    adjustment = .1; rightDriveMotorController would be .set(-kSetSpeed * .95)
 
-		double adjustment = 0.0;
-		if(difference < -1.0) {//drifting left 
-			adjustment = -0.1;
-		} else if(difference > 1.0){//drifting right
-			adjustment = 0.1;
+		double adjustment = 1.0;
+		if(difference < -.5) {//drifting left 
+			adjustment = 1.20;
+		} else if(difference > .5){//drifting right
+			adjustment = .80;
 		}
+		SmartDashboard.putNumber("SECONDS",seconds);
 		SmartDashboard.putNumber("RIGHT ADJUSTMENT",adjustment);
-		RobotMap.leftDriveMotorController.set(kSetSpeed);
-		RobotMap.rightDriveMotorController.set(-kSetSpeed * (0.85 + adjustment));
+		RobotMap.leftDriveMotorController.set(kSetSpeed * percentOfFull);
+		RobotMap.rightDriveMotorController.set(-(kSetSpeed* percentOfFull) * (adjustment));
 	}
 
 	// Called once after timeout
@@ -66,7 +90,8 @@ public class DriveStraight extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return RobotMap.leftEncoder.get() > (intialEncoderValue + encoderTicks);
+//		return RobotMap.leftEncoder.get() > (intialEncoderValue + encoderTicks);
+		return System.currentTimeMillis() > (startTime + 15000);
 	}
 
 	@Override

@@ -157,51 +157,52 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		// checks which autonomous program is selected to run
 		RobotMap.imu.reset();
-		
-		DummyChooserCommand selectedCommand = (DummyChooserCommand) autonomousChooser.getSelected();
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if (gameData == null) {
-			gameData = "";
-		}
-		int retries = 100;
-		while (gameData.length() < 2 && retries > 0) {
-			retries--;
-			try {
-				Thread.sleep(5);
-			} catch (Exception e) {
-				// Just ignore interrupted exception
-			}
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		}
-		if (gameData.length() >= 2) {
-			SmartDashboard.putString("Selector Is Working", " ");
-			
-			RobotMap.gameData = gameData;
-			RobotMap.switchGoal = new String(gameData.substring(0, 1));
-			RobotMap.scaleGoal = new String(gameData.substring(1, 2));
-			// Switch & Scale field position assignments
-			if (selectedCommand.station == 1 && selectedCommand.destination == "SCALE") {
-				m_autonomousCommand = new StationOneToScale();
-			} else if (selectedCommand.station == 1 && selectedCommand.destination == "SWITCH") {
-				m_autonomousCommand = new StationOneToSwitch();
-			} else if (selectedCommand.station == 2 && selectedCommand.destination == "SWITCH") {
-				m_autonomousCommand = new StationTwoToSwitch();
-			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SWITCH") {
-				m_autonomousCommand = new StationThreeToSwitch();
-			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SCALE") {
-				m_autonomousCommand = new StationThreeToScale();
-			} else {
-				m_autonomousCommand = new AutoCrossLine();
-			}
-		} else {
-			m_autonomousCommand = new AutoCrossLine();
-		}
+		m_autonomousCommand = new AutoCrossLine();
+//		
+//		DummyChooserCommand selectedCommand = (DummyChooserCommand) autonomousChooser.getSelected();
+//		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		if (gameData == null) {
+//			gameData = "";
+//		}
+//		int retries = 100;
+//		while (gameData.length() < 2 && retries > 0) {
+//			retries--;
+//			try {
+//				Thread.sleep(5);
+//			} catch (Exception e) {
+//				// Just ignore interrupted exception
+//			}
+//			gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		}
+//		if (gameData.length() >= 2) {
+//			SmartDashboard.putString("Selector Is Working", " ");
+//			
+//			RobotMap.gameData = gameData;
+//			RobotMap.switchGoal = new String(gameData.substring(0, 1));
+//			RobotMap.scaleGoal = new String(gameData.substring(1, 2));
+//			// Switch & Scale field position assignments
+//			if (selectedCommand.station == 1 && selectedCommand.destination == "SCALE") {
+//				m_autonomousCommand = new StationOneToScale();
+//			} else if (selectedCommand.station == 1 && selectedCommand.destination == "SWITCH") {
+//				m_autonomousCommand = new StationOneToSwitch();
+//			} else if (selectedCommand.station == 2 && selectedCommand.destination == "SWITCH") {
+//				m_autonomousCommand = new StationTwoToSwitch();
+//			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SWITCH") {
+//				m_autonomousCommand = new StationThreeToSwitch();
+//			} else if (selectedCommand.station == 3 && selectedCommand.destination == "SCALE") {
+//				m_autonomousCommand = new StationThreeToScale();
+//			} else {
+//				m_autonomousCommand = new AutoCrossLine();
+//			}
+//		} else {
+//			m_autonomousCommand = new AutoCrossLine();
+//		}
 
 		// schedule the autonomous command
 		if (m_autonomousCommand != null) {
-			SmartDashboard.putString("auto selector command", m_autonomousCommand.getClass().getName());
-			SmartDashboard.putString("gamedata", gameData);
-			SmartDashboard.putString("switch goal", "#"+RobotMap.switchGoal+ "#");
+//			SmartDashboard.putString("auto selector command", m_autonomousCommand.getClass().getName());
+//			SmartDashboard.putString("gamedata", gameData);
+//			SmartDashboard.putString("switch goal", "#"+RobotMap.switchGoal+ "#");
 			m_autonomousCommand.start();
 		}
 		else { 
@@ -259,8 +260,5 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("turn", RobotMap.leftDriveMotorController.get());
 		SmartDashboard.putNumber("Gyro-Z", RobotMap.imu.getAngleZ());
 		SmartDashboard.putNumber("Angle", RobotMap.imu.getAngle());
-
-		
-		
 	}
 }
